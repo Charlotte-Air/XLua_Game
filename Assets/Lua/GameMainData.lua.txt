@@ -1,0 +1,54 @@
+GameMainData = {}
+GameMainData.DemoPlayerModel = require("Model/DemoPlayerModel")
+
+--公共数据，无论任何接口，如果需要更新，则整个客户端的公共数据都会发生更新。一般以moudle结束
+GameMainData.ReturnbattleDiZiinfo = {}
+function GameMainData.SetModuleData(key, data)
+    if data == nil then
+        return
+    end
+end
+
+-- 检查功能是否开启
+function GameMainData.CheckModuleActive(id)
+    return false
+end
+
+function MergeData(to, from)
+    if to.isList == true then
+        MergeListData(to, from, to.metatable)
+    else
+        MergeTableData(to, from)
+    end
+end
+
+function MergeListData(to, from, metatable)
+    if #from == 0 then
+        return
+    end
+    for i, v in ipairs(from) do
+        setmetatable(v, metatable)
+        MergeDataToList(to, v)
+    end
+end
+
+function MergeDataToList(to, data)
+    for i, v in ipairs(to) do
+        if v:GetKey() == data:GetKey() then
+            MergeData(v, data)
+            return
+        end
+    end
+    table.insert(to, data)
+end
+
+function MergeTableData(to, from)
+    for k, v in pairs(from) do
+        t = type(v)
+        if t == "table" and to[k] ~= nil then
+            MergeData(to[k], from[k])
+        else
+            to[k] = from[k]
+        end
+    end
+end

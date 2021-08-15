@@ -1,0 +1,109 @@
+equipDemo = {}
+local UITable = require("UI/equip/Base/equipDemoView")  
+local UIEquipScrollRender = require("UI/equip/UIEquipScrollDemoRender")
+require("StaticData/ConfigData/ConfigEquipItem")
+UIEquipScrollRender.__index = UIEquipScrollRender
+
+function UITable:Awake()
+    self:StartInit()  
+    self.oneLineNum = 2
+    self.CrewList1 = {}
+    self.CrewItemList1 = {}
+    self.EquipScroll.renderHandler = function (nIndex,tempTransRect,nIndexTrans)			 
+    self:CrewItemRenderHandel1(nIndex,tempTransRect,nIndexTrans)
+    end
+    self.equipId = ""
+    self:Init()
+    self:AddListener("chooseEquip",self.chooseEquip) 
+    self:AddListener("reFreshEquipL",self.reFreshEquipL) 
+end
+
+function UITable:Start()      
+    self:StartInit()
+end
+
+function equipDemo.Create()
+	local ui = {}
+    setmetatable(ui, {__index=UITable})
+    ui:Create()
+    ui.layer = 2
+    UI.LoadUI(ui)
+    return ui
+end
+
+--初始化
+function UITable:Init()
+    self:RefEquip()
+    if ConfigEquipItem.nowequipId == "" then
+        self.nowequipName.gameObject:SetActive(false);
+        self.nowEquipPic.gameObject:SetActive(false);
+        self.nowAtk.gameObject:SetActive(false);
+    else
+        self.nowequipName.text = ConfigEquipItem.getWuqiByID(ConfigEquipItem.nowequipId).Name;
+        self.nowequipName.gameObject:SetActive(true);
+        self.nowEquipPic.gameObject:SetActive(true);
+        self.nowAtk.gameObject:SetActive(true);
+        self.nowAtk.text = "攻击力+" .. ConfigEquipItem.getWuqiByID(ConfigEquipItem.nowequipId).atk;
+        self.EquipPic.sprite = Public.ResMeg.GetSpritePath(ConfigEquipItem.getWuqiByID(ConfigEquipItem.nowequipId).Pic,"Item")
+    end
+end
+
+--刷新装备列表
+function UITable:RefEquip()
+    self.CrewList1 = ConfigEquipItem.EquipData 
+	local nTotal = #self.CrewList1
+	local nLine = nTotal/self.oneLineNum
+    self.EquipScroll:SetCount(math.ceil(nLine))
+end
+
+--装备列表元素
+function UITable:CrewItemRenderHandel1(nIndex,tempTransRect,nIndexTrans)
+ 	local nDataTotal = 0
+	local nNum = 0
+	if self.CrewItemList1[nIndexTrans] == nil then
+		self.CrewItemList1[nIndexTrans] = {}
+		setmetatable(self.CrewItemList1[nIndexTrans] ,UIEquipScrollRender)
+		self.CrewItemList1[nIndexTrans]:Init(tempTransRect)
+	end
+	nDataTotal = #self.CrewList1
+ 	for i=1,self.oneLineNum do
+		nNum = nIndex * self.oneLineNum + i
+ 		if nNum <= nDataTotal then
+			self.CrewItemList1[nIndexTrans].lineList[i]:SetData(self.CrewList1[nNum])
+			self.CrewItemList1[nIndexTrans].lineList[i].transform.gameObject:SetActive(true)
+		else
+			self.CrewItemList1[nIndexTrans].lineList[i].transform.gameObject:SetActive(false)
+		end
+	end
+end
+
+function UITable:SetData(v)
+	self.data=v
+end
+
+function UITable:ButtonClickHandler(btn)  
+    --LuaTools.PlaySound("btnsound")
+    if btn == self.equipTrue then  --确认
+        self.equipMsg:SetActive(false)
+        ConfigEquipItem.nowequipId =  self.nowSeeId
+        ConfirmBox.OpenBox("装备成功")
+        self:Init()
+    elseif btn == self.equipFalse then  --取消
+        self.equipMsg:SetActive(false)
+     elseif btn == self.BtnClose then  --关闭
+        self:Close() 
+    end
+end
+
+ function UITable:chooseEquip(evtName,equipid)  -- 选择装备 打开面板
+    self.equipMsg:SetActive(true)
+    self.nowSeeId = equipid;
+    self.equipMsg_name.text = ConfigEquipItem.getWuqiByID(equipid).Name;
+    self.equipMsg_Info.text = ConfigEquipItem.getWuqiByID(equipid).jieshao;
+    self.equipMsg_Pic.sprite = Public.ResMeg.GetSpritePath(ConfigEquipItem.getWuqiByID(equipid).Pic,"Item")
+    --self:Init()
+ end
+
+ function UITable:reFreshEquipL(evtName,equipid)
+    self:RefEquip()
+ end

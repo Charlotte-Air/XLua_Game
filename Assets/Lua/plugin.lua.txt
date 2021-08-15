@@ -1,0 +1,4 @@
+DOTween = CS.DG.Tweening.DOTween
+Ease = CS.DG.Tweening.Ease
+Vector3 = CS.UnityEngine.Vector3
+Destroy = CS.UnityEngine.GameObject.Destroy

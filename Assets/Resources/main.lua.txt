@@ -1,0 +1,30 @@
+require("public")
+require 'ui'
+require 'plugin'
+require("tools")
+require 'list'
+require 'event'
+require 'GameMainData'
+require 'StaticData/StaticData'
+-- math.randomseed(os.time()) 
+
+function Start()
+    UI.OpenUI("DemoEnter")
+end
+
+function sockerSendMsg(v)
+    Event.Call("sockerSendMsg", v)
+end
+
+function ray(x, y, z)
+    Event.Call("ray", x, y, z)
+end
+function rayF(v)
+    Event.Call("rayF",v,x,y,z)
+end
+function OnTriggerEnter(v)
+    Event.Call("OnTriggerEnter", v)
+end
+function update()
+    Event.Call("updateG")
+end

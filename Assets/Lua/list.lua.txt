@@ -1,0 +1,11 @@
+--metatable必须要有GetKey方法
+function CreateList(metatable)
+    local table = {}
+    table.isList = true
+    table.metatable = metatable
+    metatable.__index = metatable
+    table.__index = table
+    local result = {}
+    setmetatable(result, table)
+    return result
+end

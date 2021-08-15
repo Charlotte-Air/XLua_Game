@@ -1,0 +1,29 @@
+local Render = UI.CreateRenderTable()
+
+local UIShopInfoRender = require("UI/shop/UIShopDemoItemRender")
+UIShopInfoRender.__index = UIShopInfoRender
+
+function Render:Awake()
+    self.lineList = {}
+end
+
+function Render:SetUICompent(child)
+    if child.name == "Item1" then
+        self:CreateItemRender(child)
+    elseif child.name == "Item2" then
+        self:CreateItemRender(child)
+    elseif child.name == "Item3" then
+        self:CreateItemRender(child)
+    elseif child.name == "Item4" then
+        self:CreateItemRender(child)
+    end
+end
+
+function Render:CreateItemRender(tempTrans)
+    local tempRender = {}
+    setmetatable(tempRender, UIShopInfoRender)
+    tempRender:Init(tempTrans)
+    table.insert(self.lineList, tempRender)
+end
+
+return Render

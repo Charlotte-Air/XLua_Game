@@ -1,0 +1,99 @@
+ConfigUserData = {}
+
+--用户数据
+ConfigUserData.UserData = 
+{
+    {
+        ["ID"] = 1,
+        ["Name"] = "Charlotte",
+        ["Resources1"] = 10000,
+        ["Resources2"] = 20000,
+        ["Resources3"] = 30000,
+        ["money"] = 40000,
+        ["level"] = 1,
+        ["ExpNext"] = 1000,
+        ["exp"] = 80,
+    }
+}
+
+--获取用户Data
+function ConfigUserData.getUserID(UserID)
+    for i, v1 in ipairs(ConfigUserData.UserData) do
+        if v1.ID == UserID then
+            return v1
+        end
+    end
+    return 0
+end
+
+--获取用户数量
+function ConfigUserData.getUserSize()
+    return #ConfigUserData.UserData
+end
+
+--打印用户信息
+function ConfigUserData.PrintUserData(UserID)
+    for i, v1 in ipairs(ConfigUserData.UserData) do
+        if v1.ID == UserID then
+            print("ID:"..v1.ID)
+            print("Name:"..v1.Name)
+            print("Resources1:"..v1.Resources1)
+            print("Resources2:"..v1.Resources2)
+            print("Resources3:"..v1.Resources3)
+        end
+    end
+    return 0
+end
+
+--消耗资源扣除
+function ConfigUserData.SetResource(UserID,ResourcesType,price)
+    print("调用")
+    for i, v1 in ipairs(ConfigUserData.UserData) do
+        if v1.ID == UserID then
+            if ResourcesType == 1 then
+                if v1.Resources1 < price then
+                    return 0
+                elseif v1.Resources1 >= price then
+                    v1.Resources1 = v1.Resources1 - price
+                    return 1
+                end
+            elseif ResourcesType == 2 then
+                if v1.Resources2 < price then
+                    return 0
+                elseif v1.Resources2 >= price then
+                    v1.Resources2 = v1.Resources2 - price
+                    return 1
+                end
+            elseif ResourcesType == 3 then
+                if v1.Resources3 < price then
+                    return 0
+                elseif v1.Resources3 >= price then
+                    v1.Resources3 = v1.Resources3 - price
+                    return 1
+                end
+            end
+        end
+    end
+    return 0
+end
+
+--购买资源添加
+function ConfigUserData.AddResource(UserID,ResourcesType,price)
+    for i, v1 in ipairs(ConfigUserData.UserData) do
+        if v1.ID == UserID then
+            if ResourcesType == 1 then
+                v1.Resources1 = v1.Resources1 + price
+                return 1
+            elseif ResourcesType == 2 then
+                v1.Resources2 = v1.Resources2 + price
+                return 1
+            elseif ResourcesType == 3 then
+                v1.Resources3 = v1.Resources3 + price
+                return 1
+            end
+        end
+    end
+    return 0
+end
+
+return ConfigDramaData

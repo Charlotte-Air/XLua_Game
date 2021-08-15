@@ -1,0 +1,67 @@
+ConfigEquipItem = {}
+
+--装备数据
+ConfigEquipItem.EquipData = {}
+temp = {}
+temp.ID = "1"
+temp.Name = "紫罗兰"
+temp.jieshao = "永恒的美、质朴、美德、盛夏的清凉"
+temp.atk = 10
+temp.Pic = 1
+table.insert(ConfigEquipItem.EquipData, temp)
+tempp = {}
+tempp.ID = "2"
+tempp.Name = "桔梗"
+tempp.jieshao = "永恒的、无望的、诚实的、柔顺的、悲哀的"
+tempp.atk = 20
+tempp.Pic = 2
+table.insert(ConfigEquipItem.EquipData, tempp)
+temppp = {}
+temppp.ID = "3"
+temppp.Name = "鸢尾"
+temppp.jieshao = "热情的、适应力强的"
+temppp.atk = 30
+temppp.Pic = 3
+table.insert(ConfigEquipItem.EquipData, temppp)
+tempppp = {}
+tempppp.ID = "4"
+tempppp.Name = "蔷薇"
+tempppp.jieshao = "美好的、思念的、美德的"
+tempppp.atk = 40
+tempppp.Pic = 4
+table.insert(ConfigEquipItem.EquipData, tempppp)
+temppppp = {}
+temppppp.ID = "5"
+temppppp.Name = "三色堇"
+temppppp.jieshao = "思虑的、思念的、沉思的、快乐的"
+temppppp.atk = 50
+temppppp.Pic = 5
+table.insert(ConfigEquipItem.EquipData, temppppp)
+ConfigEquipItem.nowequipId = ""
+
+--获取装备Data
+function ConfigEquipItem.getWuqiByID(equipId)
+    for i, v1 in ipairs(ConfigEquipItem.EquipData) do
+        if v1.ID == equipId then
+            return v1
+        end
+    end
+    return 0
+end
+
+--购买装备数量
+function ConfigEquipItem.buyEquip(equipId)
+    for i, v1 in ipairs(ConfigEquipItem.EquipData) do
+        if v1.ID == equipId then
+            v1.num = v1.num - 1
+        end
+    end
+    return 0
+end
+
+--获取装备Data数量
+function ConfigEquipItem.getEquipSize()
+    return #ConfigEquipItem.EquipData
+end
+
+return ConfigEquipItem

@@ -1,0 +1,103 @@
+ConfigShopItem = {}
+
+ConfigShopItem.ShopData = {}
+shoptemp = {}
+shoptemp.ID = "1"
+shoptemp.Name = "小瓶体力"
+shoptemp.jieshao = "可以恢复小量体力值"
+shoptemp.Resources = 3
+shoptemp.price = 100
+shoptemp.num = 50
+table.insert(ConfigShopItem.ShopData, shoptemp)
+shoptemp1 = {}
+shoptemp1.ID = "2"
+shoptemp1.Name = "大瓶体力"
+shoptemp1.jieshao = "可以恢复大量体力值"
+shoptemp1.Resources = 2
+shoptemp1.price = 1000
+shoptemp1.num = 50
+table.insert(ConfigShopItem.ShopData, shoptemp1)
+shoptemp2 = {}
+shoptemp2.ID = "3"
+shoptemp2.Name = "飞翼之钟"
+shoptemp2.jieshao = "在时间面前显得太过于渺小"
+shoptemp2.Resources = 1
+shoptemp2.price = 2000
+shoptemp2.num = 5
+table.insert(ConfigShopItem.ShopData, shoptemp2)
+shoptemp3 = {}
+shoptemp3.ID = "4"
+shoptemp3.Name = "剧情门票"
+shoptemp3.jieshao = "用于挑战额外关卡"
+shoptemp3.Resources = 3
+shoptemp3.price = 5000
+shoptemp3.num = 1
+table.insert(ConfigShopItem.ShopData, shoptemp3)
+shoptemp4 = {}
+shoptemp4.ID = "5"
+shoptemp4.Name = "樱钻石"
+shoptemp4.jieshao = "用于打造等装备之一素材，可用于购买其他资源"
+shoptemp4.Resources = 1
+shoptemp4.price = 10000
+shoptemp4.num = 20
+table.insert(ConfigShopItem.ShopData, shoptemp4)
+shoptemp5 = {}
+shoptemp5.ID = "6"
+shoptemp5.Name = "水晶石"
+shoptemp5.jieshao = "用于打造高等武器之一素材，可用于购买其他资源"
+shoptemp5.Resources = 2
+shoptemp5.price = 10000
+shoptemp5.num = 20
+table.insert(ConfigShopItem.ShopData, shoptemp5)
+shoptemp6 = {}
+shoptemp6.ID = "7"
+shoptemp6.Name = "智慧之书"
+shoptemp6.jieshao = "通过这些多姿多彩的格言，增强了对生活的理解和洞察力"
+shoptemp6.Resources = 1
+shoptemp6.price = 36000
+shoptemp6.num = 10
+table.insert(ConfigShopItem.ShopData, shoptemp6)
+shoptemp7 = {}
+shoptemp7.ID = "8"
+shoptemp7.Name = "魔法之书"
+shoptemp7.jieshao = "星象魔法书，丰富的知识"
+shoptemp7.Resources = 3
+shoptemp7.price = 36000
+shoptemp7.num = 10
+table.insert(ConfigShopItem.ShopData, shoptemp7)
+shoptemp8 = {}
+shoptemp8.ID = "9"
+shoptemp8.Name = "信仰之书"
+shoptemp8.jieshao = "如生命的火炬，长明不熄，似奋斗的旗帜，指引方向"
+shoptemp8.Resources = 2
+shoptemp8.price = 36000
+shoptemp8.num = 10
+table.insert(ConfigShopItem.ShopData, shoptemp8)
+ConfigShopItem.nowShopId = ""
+
+--获取商店Data
+function ConfigShopItem.getshopByID(shopId)
+    for i, v1 in ipairs(ConfigShopItem.ShopData) do
+        if v1.ID == shopId then
+            return v1
+        end
+    end
+    return 0
+end
+
+--获取商店道具数量
+function ConfigShopItem.buyShop(shopId)
+    for i, v1 in ipairs(ConfigShopItem.ShopData) do
+        if v1.ID == shopId then
+            v1.num = v1.num - 1
+        end
+    end
+    return 0
+end
+
+--获取商店Data数量
+function ConfigShopItem.getShopSize()
+    return #ConfigShopItem.ShopData
+end
+
+return ConfigShopItem

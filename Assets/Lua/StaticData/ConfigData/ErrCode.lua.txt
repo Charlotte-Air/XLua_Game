@@ -1,0 +1,152 @@
+local data = {{
+    Note = '初始化用户错误',
+    ErrorCode = 1
+}, {
+    Note = '玩家没有体力进行江湖',
+    ErrorCode = 300105
+}, {
+    Note = '用户未登录',
+    ErrorCode = 100000
+}, {
+    Note = '与服务器断开连接',
+    ErrorCode = 1999999
+}, {
+    Note = '请勿重复签到',
+    ErrorCode = 100508
+}, {
+    Note = '补签失败',
+    ErrorCode = 100510
+}, {
+    Note = '豪华签到失败',
+    ErrorCode = 100512
+}, {
+    Note = '领取宝箱奖励失败',
+    ErrorCode = 100514
+}, {
+    Note = '领取任务奖励失败',
+    ErrorCode = 100516
+}, {
+    Note = '领取任务宝箱奖励失败',
+    ErrorCode = 100518
+}, {
+    Note = '道具不存在',
+    ErrorCode = 100532
+}, {
+    Note = '道具数量不足',
+    ErrorCode = 100531
+}, {
+    Note = '江湖凶险，阊门等级还未达到要求啊',
+    ErrorCode = 300107
+}, {
+    Note = '体力不足以进行名山挑战',
+    ErrorCode = 100537
+}, {
+    Note = '更名卡不足',
+    ErrorCode = 300009
+}, {
+    Note = '昵称有人占领',
+    ErrorCode = 300010
+}, {
+    Note = '格式错误',
+    ErrorCode = 300011
+}, {
+    Note = '好友不存在',
+    ErrorCode = 200401
+}, {
+    Note = '请勿重复邀请',
+    ErrorCode = 200402
+}, {
+    Note = '好友在黑名单里',
+    ErrorCode = 200403
+}, {
+    Note = '该用户名尚未注册',
+    ErrorCode = 203
+
+}, {
+    Note = '元宝不足',
+    ErrorCode = 12
+}, {
+    Note = '可购买数不足',
+    ErrorCode = 200600,
+    Event.Call("closeShop")
+}, {
+    Note = '敬酒数不足',
+    ErrorCode = 200404
+}, {
+    Note = '该副本已开启，请勿重复开启',
+    ErrorCode = 500104
+}, {
+    Note = '卷轴数量不足',
+    ErrorCode = 500105
+}, {
+    Note = '刷新次数不足',
+    ErrorCode = 200405
+}, {
+    Note = '你没有我要的东西',
+    ErrorCode = 100951
+}, {
+    Note = '交谈后任务完成',
+    ErrorCode = 100952
+}, {
+    Note = '交谈后任务没完成',
+    ErrorCode = 100953
+}, {
+    Note = '密码错误',
+    ErrorCode = 100954
+}, {
+    Note = '回答错误',
+    ErrorCode = 100955
+}, {
+    Note = '此邮件无附件',
+    ErrorCode = 200406
+}, {
+    Note = '此邮件附件已领取',
+    ErrorCode = 200407
+}, {
+    Note = '未拥有',
+    ErrorCode = 100548
+}, {
+    Note = '卡片不足',
+    ErrorCode = 100549
+}, {
+    Note = '武功经验卷不足',
+    ErrorCode = 100501
+}, {
+    Note = '元气不足',
+    ErrorCode = 500100
+}, {
+    Note = '体力不足',
+    ErrorCode = 500101
+}, {
+    Note = '装备碎片不足',
+    ErrorCode = 100606
+}, {
+    Note = '武功碎片不足',
+    ErrorCode = 100505
+}, {
+    Note = '食物不足',
+    ErrorCode = 100802
+}, {
+    Note = '宠物培养失败',
+    ErrorCode = 100750
+}, {
+    Note = '宠物突破失败',
+    ErrorCode = 100751
+}, {
+    Note = '宠物散工失败',
+    ErrorCode = 100752
+}, {
+    Note = '宠物武学境界修炼失败',
+    ErrorCode = 100753
+}, {
+    Note = '宠物武学境界提升失败',
+    ErrorCode = 100754
+}, {
+    Note = '宠物招募失败',
+    ErrorCode = 100755
+}, {
+    Note = '宠物放弃本次培养',
+    ErrorCode = 100756
+}}
+
+return data

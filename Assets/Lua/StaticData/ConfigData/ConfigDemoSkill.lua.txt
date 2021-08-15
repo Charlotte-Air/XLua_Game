@@ -1,0 +1,148 @@
+ConfigDemoSkill = {}
+
+ConfigDemoSkill.SkillData =
+{
+    {
+        ["ID"] = "1",
+        ["Name"] = "生命恢复Lv1",
+        ["Info"] = "回复生命值20",
+        ["SkillType"] = "1",    --1 回复 2 buff 3 道具
+        ["Value"] = 20,
+        ["ValueModType"] = 1,   --1 定值 2 百分比
+        ["ValueAttribute"] = 1, --1 生命 2 攻击
+        ["Level"] = 1,
+        ["CD"] = 5,
+        ["Tx"] ="",
+    },
+    {
+        ["ID"] = "2",
+        ["Name"] = "生命恢复Lv2",
+        ["Info"] = "回复生命值40",
+        ["SkillType"] = "1",    --1 回复 2 buff 3 道具
+        ["Value"] = 40,
+        ["ValueModType"] = 1,   --1 定值 2 百分比
+        ["ValueAttribute"] = 1, --1 生命 2 攻击
+        ["Level"] = 2,
+        ["CD"] = 15,
+        ["Tx"] ="",
+    },
+    {
+        ["ID"] = "3",
+        ["Name"] = "生命恢复Lv3",
+        ["Info"] = "回复生命值80",
+        ["SkillType"] = "1",    --1 回复 2 buff 3 道具
+        ["Value"] = 80,
+        ["ValueModType"] = 1,   --1 定值 2 百分比
+        ["ValueAttribute"] = 1, --1 生命 2 攻击
+        ["Level"] = 3,
+        ["CD"] = 35,
+        ["Tx"] ="",
+    },
+    {
+        ["ID"] = "4",
+        ["Name"] = "攻击增伤Lv1",
+        ["Info"] = "10秒内增加攻击百分之5%",
+        ["SkillType"] = "2",    --1 回复 2 buff 3 道具
+        ["Value"] = 5,
+        ["ValueModType"] = 2,   --1 定值 2 百分比
+        ["ValueAttribute"] = 2, --1 生命 2 攻击
+        ["Level"] = 1,
+        ["CD"] = 20,
+        ["Tx"] ="",
+        ["LastTime"] = 10,
+    },
+    {
+        ["ID"] = "5",
+        ["Name"] = "攻击增伤Lv2",
+        ["Info"] = "10秒内增加攻击百分之10%",
+        ["SkillType"] = "1",    --1 回复 2 buff 3 道具
+        ["Value"] = 10,
+        ["ValueModType"] = 2,   --1 定值 2 百分比
+        ["ValueAttribute"] = 2, --1 生命 2 攻击
+        ["Level"] = 2,
+        ["CD"] = 30,
+        ["Tx"] ="",
+        ["LastTime"] = 10,
+    },
+    {
+        ["ID"] = "6",
+        ["Name"] = "生命恢复Lv3",
+        ["Info"] = "10秒内增加攻击百分之20%",
+        ["SkillType"] = "2",    --1 回复 2 buff 3 道具
+        ["Value"] = 20,
+        ["ValueModType"] = 2,   --1 定值 2 百分比
+        ["ValueAttribute"] = 2, --1 生命 2 攻击
+        ["Level"] = 3,
+        ["CD"] = 60,
+        ["Tx"] ="",
+        ["LastTime"] = 10,
+    },
+    {
+        ["ID"] = "7",
+        ["Name"] = "火球术Lv1",
+        ["Info"] = "攻击敌人造成伤害20",
+        ["SkillType"] = "2",    --1 回复 2 buff 3 道具
+        ["Value"] = 20,
+        ["ValueModType"] = 1,   --1 定值 2 百分比
+        ["ValueAttribute"] = 2, --1 生命 2 攻击
+        ["Level"] = 1,
+        ["CD"] = 15,
+        ["Tx"] ="",
+    },
+    {
+        ["ID"] = "8",
+        ["Name"] = "火球术Lv2",
+        ["Info"] = "攻击敌人造成伤害35",
+        ["SkillType"] = "2",    --1 回复 2 buff 3 道具
+        ["Value"] = 35,
+        ["ValueModType"] = 1,   --1 定值 2 百分比
+        ["ValueAttribute"] = 2, --1 生命 2 攻击
+        ["Level"] = 2,
+        ["CD"] = 30,
+        ["Tx"] ="",
+    },
+    {
+        ["ID"] = "9",
+        ["Name"] = "火球术Lv3",
+        ["Info"] = "攻击敌人造成伤害50",
+        ["SkillType"] = "2",    --1 回复 2 buff 3 道具
+        ["Value"] = 50,
+        ["ValueModType"] = 1,   --1 定值 2 百分比
+        ["ValueAttribute"] = 2, --1 生命 2 攻击
+        ["Level"] = 3,
+        ["CD"] = 45,
+        ["Tx"] ="",
+    }
+}
+
+--通过Name获取
+function ConfigDemoSkill.getVarByCustom(name,value)
+    for key,var in pairs(SkillData) do
+        if var[name] == value then
+            return var
+        end
+    end
+end
+
+--通过ID获取
+function ConfigDemoSkill.getVarById(id)
+    for key,var in pairs(SkillData) do
+        if tounmber(var.ID) == tonumber(id) then
+            return var
+        end
+    end
+    return nil
+end
+
+--通过序列获取
+function ConfigDemoSkill.getVarByIndex(index)
+    print()
+    return SkillData[tonumber(index)]
+end
+
+--获取数据大小
+function ConfigDemoSkill.getSize()
+    return #SkillData
+end
+
+return ConfigDemoSkill

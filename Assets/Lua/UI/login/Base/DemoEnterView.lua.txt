@@ -1,0 +1,59 @@
+local DemoEnterView = {}
+setmetatable(DemoEnterView, {__index=UIBase})
+Shopsystem=require("UI/shop/Base/shopDemoView")
+
+function DemoEnterView:Create()
+    self.name = "DemoEnter"
+    self.path = "login"
+end
+function DemoEnterView:SetUICompent(child)
+    if child.name == "buttonEnter" then 
+		DemoEnterView.buttonEnter = child:GetComponent("Button")
+    elseif child.name == "BagSystem" then
+        DemoEnterView.buttonEquip = child:GetComponent("Button")
+    elseif child.name == "ShopSystem" then
+        DemoEnterView.buttonShop = child:GetComponent("Button")
+    elseif child.name == "FriendSystem" then
+        DemoEnterView.buttonFriend = child:GetComponent("Button")
+    elseif child.name == "QuestSystem" then
+        DemoEnterView.buttonQuest = child:GetComponent("Button")
+    elseif child.name == "Resources1_Add" then
+        DemoEnterView.Resources1_Add = child:GetComponent("Button")
+    elseif child.name == "Resources2_Add" then
+        DemoEnterView.Resources2_Add = child:GetComponent("Button")
+    elseif child.name == "Resources3_Add" then
+        DemoEnterView.Resources3_Add = child:GetComponent("Button")
+    elseif child.name == "Achievement" then
+        DemoEnterView.Achievement = child:GetComponent("Button")
+    elseif child.name == "Member" then
+        DemoEnterView.Member = child:GetComponent("Button")
+    elseif child.name == "ButtonSetSystem" then
+        DemoEnterView.ButtonSetSystem = child:GetComponent("Button")
+    elseif child.name == "shop_Resources1" then
+        DemoEnterView.shop_Resources1 = child:GetComponent("Text")
+    elseif child.name == "shop_Resources2" then
+        DemoEnterView.shop_Resources2 = child:GetComponent("Text")
+    elseif child.name == "shop_Resources3" then
+        DemoEnterView.shop_Resources3 = child:GetComponent("Text")
+    elseif child.name == "Shop_StoryInfo" then
+        DemoEnterView.Shop_StoryInfo = child:GetComponent("Text")
+    end
+end
+
+
+function DemoEnterView:Init()   
+	DemoEnterView.buttonEnter.onClick:AddListener(function() self:ButtonClickHandler(DemoEnterView.buttonEnter) end)
+    DemoEnterView.buttonEquip.onClick:AddListener(function() self:ButtonClickHandler(DemoEnterView.buttonEquip) end)
+    DemoEnterView.buttonShop.onClick:AddListener(function() self:ButtonClickHandler(DemoEnterView.buttonShop) end)
+    DemoEnterView.buttonFriend.onClick:AddListener(function() self:ButtonClickHandler(DemoEnterView.buttonFriend) end)
+    DemoEnterView.buttonQuest.onClick:AddListener(function() self:ButtonClickHandler(DemoEnterView.buttonQuest) end)
+    DemoEnterView.Resources1_Add.onClick:AddListener(function() self:ButtonClickHandler(DemoEnterView.Resources1_Add) end)
+    DemoEnterView.Resources2_Add.onClick:AddListener(function() self:ButtonClickHandler(DemoEnterView.Resources2_Add) end)
+    DemoEnterView.Resources3_Add.onClick:AddListener(function() self:ButtonClickHandler(DemoEnterView.Resources3_Add) end)
+    DemoEnterView.Achievement.onClick:AddListener(function() self:ButtonClickHandler(DemoEnterView.Achievement) end)
+    DemoEnterView.Member.onClick:AddListener(function() self:ButtonClickHandler(DemoEnterView.Member) end)
+    DemoEnterView.ButtonSetSystem.onClick:AddListener(function() self:ButtonClickHandler(DemoEnterView.ButtonSetSystem) end)
+end
+
+return DemoEnterView
+

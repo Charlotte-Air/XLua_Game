@@ -1,0 +1,44 @@
+local LuaAntTimer = {}
+LuaAntTimer.__index = LuaAntTimer
+
+function CreateLuaAntTimer(ui, TimerObject, renderFun, ...)
+    local t = {}
+    setmetatable(t, LuaAntTimer)
+    t:Init(ui, TimerObject, renderFun, ...)
+    return t
+end
+
+function LuaAntTimer:Init(ui, TimerObject, renderFun, ID)
+
+    self.TimerObject = TimerObject
+    self.renderFun = renderFun
+    self.leftTime = 0
+    self.startflag = true
+    self.ID = ID
+
+    self.TimerObject.antTimerCallBack = function(ID)
+        self.renderFun(ui, ID)
+    end
+
+end
+
+function LuaAntTimer:SetTime(v)
+    self.leftTime = v
+    self.TimerObject:SetTime(self.leftTime, self.startflag, self.ID)
+end
+
+function LuaAntTimer:Dispose()
+    for k, v in pairs(self.items) do
+
+        if v.Dispose ~= nil then
+            v:Dispose()
+        end
+
+        for k1, v1 in pairs(v) do
+            v[k1] = nil
+        end
+    end
+    for k, v in pairs(self) do
+        self[k] = nil
+    end
+end

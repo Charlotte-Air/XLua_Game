@@ -1,0 +1,26 @@
+local Render = UI.CreateRenderTable()
+local UIEquipInfoRender = require("UI/equip/UIEquipDemoItemRender")
+UIEquipInfoRender.__index = UIEquipInfoRender
+
+function Render:Awake()
+	self.lineList = {}
+end
+
+function Render:SetUICompent(child)
+	if child.name == "Item1" then
+		self:CreateItemRender(child)
+	elseif child.name == "Item2" then
+		self:CreateItemRender(child)
+	elseif child.name == "Item3" then
+		self:CreateItemRender(child)
+	end
+end
+
+function Render:CreateItemRender(tempTrans)
+	local tempRender = {}
+	setmetatable(tempRender,UIEquipInfoRender)
+	tempRender:Init(tempTrans)
+	table.insert(self.lineList, tempRender)
+end
+
+return Render

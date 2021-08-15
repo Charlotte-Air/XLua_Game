@@ -1,0 +1,25 @@
+local ConfirmBoxView = {}
+setmetatable(ConfirmBoxView, {__index=UIBase})
+
+function ConfirmBoxView:Create()
+    self.name = "Confirm"
+    self.path = "box"
+end
+
+function ConfirmBoxView:SetUICompent(child)
+    if child.name == "msg" then
+        ConfirmBoxView.msg = child:GetComponent("Text")
+        ConfirmBoxView.msg.text = ConfirmBox.getmsg()
+    elseif child.name == "buttonYes" then
+        ConfirmBoxView.buttonYes = child:GetComponent("Button")
+        ConfirmBoxView.Init()
+    end
+end
+
+function ConfirmBoxView:Init()
+    ConfirmBoxView.buttonYes.onClick:AddListener(function() ConfirmBox:ButtonClickHandler(ConfirmBoxView.buttonYes) end)
+end
+
+
+return ConfirmBoxView
+

@@ -1,0 +1,593 @@
+Public = {}
+
+LuaTools = CS.LuaTools
+
+function Public.GetModule(modNmae, ...)
+    -- CS.UnityEngine.Debug.Log("modNmae="..modNmae)
+    local pb = nil
+    if #... > 0 then
+        ---- print("..." ,   #...)
+        pb = Public.ResourceManager.GetModulePath(modNmae, ...)
+    else
+        pb = Public.ResourceManager.GetModule(modNmae)
+    end
+    return pb
+end
+
+function Public.GetPrefab(prebName, ...)
+
+    local pb = nil
+    if #... > 0 then
+        pb = Public.ResourceManager.GetPrefabPath(prebName, ...)
+    else
+        pb = Public.ResourceManager.GetPrefab(prebName)
+    end
+    return pb
+
+end
+
+function Public.GetSprite(sptNmae, ...)
+    local pb = nil
+    if #... > 0 then
+        pb = Public.ResourceManager.GetSpritePath(sptNmae, ...)
+    else
+        pb = Public.ResourceManager.GetSprite(sptNmae)
+    end
+    return pb
+end
+
+function Public.GetTexturePath(sptNmae, ...)
+
+    local pb = nil
+    if #... > 0 then
+        pb = Public.ResourceManager.GetTexturePath(sptNmae, ...)
+    else
+        pb = Public.ResourceManager.GetTexture(sptNmae)
+    end
+    return pb
+
+end
+
+function Public.GetGameObject(ObjNmae, ...)
+    local pb = nil
+    if #... > 0 then
+        pb = Public.ResourceManager.GetGameObjectPath(ObjNmae, ...)
+    else
+        pb = Public.ResourceManager.GetGameObject(ObjNmae)
+    end
+    return pb
+end
+
+Serverdata_UI = CS.Serverdata_UI
+Public.ResourceManager = CS.ResourceManager
+Public.Ptool = CS.Public.instance
+
+Public.Debug = CS.Debug
+Public.GameObject = CS.UnityEngine.GameObject
+Public.UnityEngineTool = CS.UnityEngineTool
+local parent = Public.GameObject.Find("gameMain").transform
+local EasyTouch = CS.UnityEngine.GameObject.Find("EasyTouch").gameObject
+local obj = CS.UnityEngine.GameObject.Instantiate(CS.ResourceManager.GetPrefabPath("musicManager", "Music"))
+obj.name = "musicManager"
+if parent ~= nil then
+    obj.transform:SetParent(parent)
+end
+obj:AddComponent(typeof(CS.MusicManage))
+
+Public.MusicManager = CS.MusicManage.instance
+-- print("Public.MusicManager  "  , Public.MusicManager)
+
+-- 网络发送协议
+if Public['NetTool'] == nil then
+    Public.NetTool = CS.NetTool.instance
+end
+
+if Public['GameMainData'] == nil then
+    Public.GameMainData = CS.GameMainData.instance
+end
+
+if Public['Get_show_time'] == nil then
+    Public.Get_show_time = CS.Get_show_time.instance
+end
+
+if Public['PDM'] == nil then
+    Public.PDM = CS.PDM
+end
+
+if Public['A_jiulou'] == nil then
+    Public.A_jiulou = CS.A_jiulou.instance
+end
+
+if Public['ResMeg'] == nil then
+    Public['ResMeg'] = CS.ResourceManager
+end
+
+if Public['DicManager'] == nil then
+    Public['DicManager'] = CS.DicManager
+end
+
+function Public.ConnectSocket()
+    --Public.soket = CS.SocketHelper.instance
+    --print(" Public.soket  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ " , Public.soket)
+    --local ii = Net.GetAddress()
+    --print(ii)
+    --Public.soket:ConnectSocket(ii, "10001")
+end
+
+-- 通用提示板 
+function Public.warning(info)
+    if Public.warnBoard == nil then -- 取到警告板的预制体
+        Public.warnBoard = Public.ResMeg.GetPrefabPath("warn_ban", "public")
+    end
+    local warn_ban = UI.Instantiate(Public.warnBoard, UI.rootLoading, "warn_ban")
+    --  warn_ban:GetComponent("RectTransform").anchoredPosition3D = CS.UnityEngine.Vector3(0, 70, 0);
+    local warnInfo = warn_ban.transform:Find("warn_ban2").gameObject
+    warnInfo:GetComponent('Text').text = info
+    local tween = warn_ban:GetComponent("RectTransform"):DOAnchorPos(CS.UnityEngine.Vector2(0, 120), 0.7):OnComplete(
+        function()
+            Public.ImageTM(warn_ban)
+        end)
+
+end
+
+function Public.ImageTM(obj)
+    print(obj.name)
+    local image = obj:GetComponent("Image")
+    image:DOColor(CS.UnityEngine.Color(image.color.r, image.color.g, image.color.b, 0), 1 / 1):SetEase(Ease.Linear)
+    local tween = obj:GetComponent("RectTransform"):DOAnchorPos(CS.UnityEngine.Vector2(0, 180), 0.7):OnComplete(
+        function()
+            CS.UnityEngine.GameObject.Destroy(obj)
+        end)
+end
+
+-- 跑马灯广播 
+function Public.RunMessage(info)
+    LuaTools.PlaySound("tongzhisound")
+    if Public.broadcast == nil then
+        Public.broadcast = Public.ResMeg.GetPrefabPath("broadcast", "rewardshow")
+    end
+    local broadcast = UI.Instantiate(Public.broadcast, UI.rootLoading, "broadcast")
+    local broadInfo = broadcast.transform:Find("info").gameObject
+    broadInfo:GetComponent('Text').text = info
+    print("跑马灯广播#info=", #info)
+    broadInfo:GetComponent("RectTransform"):DOAnchorPos(CS.UnityEngine.Vector2(350 - (700 + #info * 11.5), 0),
+        #info * 0.11):SetEase(Ease.Linear):OnComplete(function()
+        CS.UnityEngine.GameObject.Destroy(broadcast)
+    end)
+end
+
+-- 成就特效 
+function Public.MentShow(mentName, ybNum)
+    LuaTools.PlaySound("tongzhisound")
+    if Public.achievement == nil then
+        Public.achievement = Public.ResMeg.GetPrefabPath("achievement", "rewardshow")
+    end
+    local achievement = UI.Instantiate(Public.achievement, UI.rootLoading, "achievement")
+
+    local name = achievement.transform:Find("di/name").gameObject
+    name:GetComponent('Text').text = "《" .. mentName .. "》"
+
+    local yuanbaoNum = achievement.transform:Find("di/yuanbaoNum").gameObject
+    local yuanbaopic = achievement.transform:Find("di/yuanbaopic").gameObject
+    if ybNum > 0 then
+        yuanbaoNum:GetComponent('Text').text = "+ " .. ybNum
+    else
+        yuanbaoNum:SetActive(false)
+        yuanbaopic:SetActive(false)
+    end
+    achievement:GetComponent("RectTransform"):DOAnchorPos(CS.UnityEngine.Vector2(0, 0), 4.5):OnComplete(function()
+        CS.UnityEngine.GameObject.Destroy(achievement)
+    end)
+end
+
+function EnterQiYuPage(pageName)
+    CS.SysBroadCast.ButtionDelegate("a_qiyu")
+    Show_Which_Page(pageName)
+end
+
+--	CS.JsonManager:LoadResouceData()
+function Public.init()
+    if Public.LoadingScene == nil then
+        Public.LoadingScene = UI.Instantiate(Public.GetModule("a_loadingpage"), UI, "a_loadingpage")
+    end
+
+end
+-- 拆分字符串方法
+function Public.Split(s, sp)
+    local res = {}
+
+    local temp = s
+    local len = 0
+    while true do
+        len = string.find(temp, sp)
+        if len ~= nil then
+            local result = string.sub(temp, 1, len - 1)
+            temp = string.sub(temp, len + 1)
+            table.insert(res, result)
+        else
+            table.insert(res, temp)
+            break
+        end
+    end
+
+    return res
+end
+
+-- 返回物品显示所需图片
+function Public.ShowNeedPic(info)
+
+    -- 客户端，服务器通用资源识别类型
+    -- 定义资源类型:  yuanBao元宝  silver银两  goldLeaf金叶子   p道具 dz弟子 zb装备 wg武功  xd心得  dzh弟子魂魄  zbs装备碎片  wgs武功碎片 dx雕像  pet宠物
+    if info == "" then
+        return
+    end
+
+    local str = Split(info, "*")
+    if str[1] == "yuanBao" then
+        return Public.ResMeg.GetSpritePath("gold", "Public")
+    elseif str[1] == "silver" then
+        return Public.ResMeg.GetSpritePath("silver", "Public")
+    elseif str[1] == "goldLeaf" then
+        return Public.ResMeg.GetSpritePath("goldleaf", "Public")
+    elseif str[1] == "p" then
+        return Public.ResMeg.GetSpritePath(str[2], "backpack")
+    elseif str[1] == "dz" then
+        return Public.ResMeg.GetSpritePath("H" .. string.sub(str[2], 2), "herohead")
+    elseif str[1] == "dzh" then
+        return Public.ResMeg.GetSpritePath("H" .. string.sub(str[2], 2), "herohead")
+    elseif str[1] == "zb" then
+        return Public.ResMeg.GetSpritePath(str[2], "equip")
+    elseif str[1] == "zbs" then
+        return Public.ResMeg.GetSpritePath(str[2], "equip")
+    elseif str[1] == "wg" then
+        return Public.ResMeg.GetSpritePath(str[2], "wuGong")
+    elseif str[1] == "wgs" then
+        return Public.ResMeg.GetSpritePath(str[2], "wuGong")
+    elseif str[1] == "pet" then
+        return Public.ResMeg.GetSpritePath(str[2], "herohead")
+    elseif str[1] == "petsp" then
+        return Public.ResMeg.GetSpritePath(str[2], "herohead")
+    elseif str[1] == "jz" then
+        return Public.ResMeg.GetSpritePath(str[2], "scroll")
+    elseif str[1] == "card" then
+        return Public.ResMeg.GetSpritePath(str[2], "herohead")
+    end
+
+end
+
+-- 返回通用的物品描述
+function Public.CommonInfo(info)
+    -- print("生成通用的物品显示info=",info) 
+    if info == "" then
+        return
+    end
+
+    local str = Split(info, "*")
+
+    if str[1] == "p" then
+        local propMsg = ConfigPropJson.getVarByCustom("prop_id", str[2])
+        if propMsg == nil then
+            return
+        end
+        return propMsg.prop_info
+
+    elseif str[1] == "dz" then
+        local dzMsg = ConfigDiZiData.getVarByCustom("player_id", str[2])
+        if dzMsg == nil then
+            return
+        end
+        return dzMsg.introduction
+    elseif str[1] == "dzh" then
+        local dzMsg = ConfigDiZiData.getVarByCustom("player_id", str[2])
+        if dzMsg == nil then
+            return
+        end
+        return dzMsg.introduction
+    elseif str[1] == "zb" then
+        local zbMsg = ConfigEquipJson.getVarByCustom("equip_id", str[2])
+        if zbMsg == nil then
+            return
+        end
+        return zbMsg.equip_info
+    elseif str[1] == "zbs" then
+        local zbMsg = ConfigEquipJson.getVarByCustom("equip_id", str[2])
+        if zbMsg == nil then
+            return
+        end
+        return zbMsg.equip_info
+    elseif str[1] == "wg" then
+        local wgMsg = ConfigWuGongJson.getVarByCustom("wg_id", str[2])
+        if wgMsg == nil then
+            return
+        end
+        return wgMsg.wg_note
+    elseif str[1] == "wgs" then
+        local wgMsg = ConfigWuGongJson.getVarByCustom("wg_id", str[2])
+        if wgMsg == nil then
+            return
+        end
+        return wgMsg.wg_note
+    elseif str[1] == "pet" then
+        local petMsg = ConfigPetData.getVarByCustom("player_id", str[2])
+        if petMsg == nil then
+            return
+        end
+        return petMsg.introduction
+    elseif str[1] == "petsp" then
+        local petMsg = ConfigPetData.getVarByCustom("player_id", str[2])
+        if petMsg == nil then
+            return
+        end
+        return petMsg.introduction
+    elseif str[1] == "jz" then
+        local petMsg = ConfigScrollData.getVarByCustom("scroll_id", str[2])
+        if petMsg == nil then
+            return
+        end
+        return petMsg.scroll_info
+    end
+
+end
+
+function Public.GetCoordinate(map_id, geziId)
+
+    local saveObjPos = {}
+    local index = 1
+    -- 记录最左Z  最右Z  最上X  最下X  
+
+    local obj = CS.UnityEngine.GameObject.Find("3DObject/" .. map_id).transform
+
+    print(geziId)
+    print("3DObject/" .. map_id .. "/" .. geziId)
+    gridObj = CS.UnityEngine.GameObject.Find("3DObject/" .. map_id .. "/" .. geziId)
+    if gridObj == nil then
+        return
+    end
+    print("gridObj.name", gridObj.name)
+    local left = nil
+    local right = nil
+    local up = nil
+    local down = nil
+    local saveLiftRightNum = {}
+    local saveUpDownNum = {}
+    local gridObjXX = math.floor(gridObj.transform:GetComponent("Transform").localPosition.x)
+    local gridObjZZ = math.floor(gridObj.transform:GetComponent("Transform").localPosition.z)
+    -- print(obj.transform.childCount )
+    for i = 0, obj.transform.childCount - 1 do
+        if obj.transform:GetChild(i).gameObject.tag == "grid" then
+            local xx = math.floor(obj.transform:GetChild(i).gameObject:GetComponent("Transform").localPosition.x)
+            local zz = math.floor(obj.transform:GetChild(i).gameObject:GetComponent("Transform").localPosition.z)
+            saveObjPos[index] = xx .. "*" .. zz
+            --	print(xx.."*"..zz  )
+            saveLiftRightNum[index] = zz
+            saveUpDownNum[index] = xx
+            if left == nil then
+                left = zz
+                right = zz
+            end
+            if zz > left then
+                left = zz
+            end
+            if zz < right then
+                right = zz
+            end
+            if up == nil then
+                up = xx
+                down = xx
+            end
+            if xx > up then
+                up = xx
+            end
+            if xx < down then
+                down = xx
+            end
+            index = index + 1
+        end
+    end
+
+    return up - gridObjXX + 1, left - gridObjZZ + 1
+
+end
+
+function Public.GetCoordinate2(map_id, gridObj)
+
+    local saveObjPos = {}
+    local index = 1
+    -- 记录最左Z  最右Z  最上X  最下X  
+
+    local obj = CS.UnityEngine.GameObject.Find("3DObject/" .. map_id).transform
+
+    local left = nil
+    local right = nil
+    local up = nil
+    local down = nil
+    -- local left1 = nil
+    -- local right1 = nil
+    -- local up1 = nil
+    -- local down1 = nil
+    local saveLiftRightNum = {}
+    local saveUpDownNum = {}
+    local gridObjXX = math.floor(gridObj.transform:GetComponent("Transform").localPosition.x)
+    local gridObjZZ = math.floor(gridObj.transform:GetComponent("Transform").localPosition.z)
+    -- print(obj.transform.childCount )
+    for i = 0, obj.transform.childCount - 1 do
+        if obj.transform:GetChild(i).gameObject.tag == "grid" then
+            local xx = math.floor(obj.transform:GetChild(i).gameObject:GetComponent("Transform").localPosition.x)
+            local zz = math.floor(obj.transform:GetChild(i).gameObject:GetComponent("Transform").localPosition.z)
+            saveObjPos[index] = xx .. "*" .. zz
+            --	print(xx.."*"..zz  )
+            saveLiftRightNum[index] = zz
+            saveUpDownNum[index] = xx
+            if left == nil then
+                left = zz
+                right = zz
+            end
+            if zz > left then
+                left = zz
+            end
+            if zz < right then
+                right = zz
+            end
+            if up == nil then
+                up = xx
+                down = xx
+            end
+            if xx > up then
+                up = xx
+            end
+            if xx < down then
+                down = xx
+            end
+            index = index + 1
+        end
+    end
+
+    return up - gridObjXX + 1, left - gridObjZZ + 1
+
+end
+
+-- 获取同屏玩家设置
+function Public.GetShowPlayerNumSet()
+    -- 同屏玩家(1不显示 2少量 3中等 4大量) 
+    if login.clientData["showPlayerNum"] == "1" then
+        return "1"
+    elseif login.clientData["showPlayerNum"] == "2" then
+        return "2"
+    elseif login.clientData["showPlayerNum"] == "3" then
+        return "3"
+    elseif login.clientData["showPlayerNum"] == "4" then
+        return "4"
+    end
+
+end
+
+function Public.SetEasyTouch(settype)
+    if settype == "open" then
+        EasyTouch:SetActive(true)
+    else
+        EasyTouch:SetActive(false)
+    end
+end
+
+function Public.numberToString(szNum)
+    ---阿拉伯数字转中文大写
+    local szChMoney = ""
+    local iLen = 0
+    local iNum = 0
+    local iAddZero = 0
+    local hzUnit = {"", "十", "百", "千", "万", "十", "百", "千", "亿", "十", "百", "千", "万", "十",
+                    "百", "千"}
+    local hzNum = {"零", "一", "二", "三", "四", "五", "六", "七", "八", "九"}
+    if nil == tonumber(szNum) then
+        return tostring(szNum)
+    end
+    iLen = string.len(szNum)
+    if iLen > 10 or iLen == 0 or tonumber(szNum) < 0 then
+        return tostring(szNum)
+    end
+    for i = 1, iLen do
+        iNum = string.sub(szNum, i, i)
+        if iNum == 0 and i ~= iLen then
+            iAddZero = iAddZero + 1
+        else
+            if iAddZero > 0 then
+                szChMoney = szChMoney .. hzNum[1]
+            end
+            szChMoney = szChMoney .. hzNum[iNum + 1] -- //转换为相应的数字
+            iAddZero = 0
+        end
+        if (iAddZero < 4) and (0 == (iLen - i) % 4 or 0 ~= tonumber(iNum)) then
+            szChMoney = szChMoney .. hzUnit[iLen - i + 1]
+        end
+    end
+    local function removeZero(num)
+        -- 去掉末尾多余的 零
+        num = tostring(num)
+        local szLen = string.len(num)
+        local zero_num = 0
+        for i = szLen, 1, -3 do
+            szNum = string.sub(num, i - 2, i)
+            if szNum == hzNum[1] then
+                zero_num = zero_num + 1
+            else
+                break
+            end
+        end
+        num = string.sub(num, 1, szLen - zero_num * 3)
+        szNum = string.sub(num, 1, 6)
+        --- 开头的 "一十" 转成 "十" , 贴近人的读法
+        if szNum == hzNum[2] .. hzUnit[2] then
+            num = string.sub(num, 4, string.len(num))
+        end
+        return num
+    end
+    return removeZero(szChMoney)
+end
+
+function Public.GetPreciseDecimal(nNum, n)
+    if type(nNum) ~= "number" then
+        return nNum
+    end
+    n = n or 0
+    n = math.floor(n)
+    if n < 0 then
+        n = 0
+    end
+    local nDecimal = 10 ^ n
+    local nTemp = math.floor(nNum * nDecimal)
+    local nRet = nTemp / nDecimal
+    return nRet
+end
+
+local isShow = true
+
+function Public.StartDownTime()
+    if isShow then
+        local obj = CS.UnityEngine.GameObject.Find("GameObject").gameObject
+        obj.transform:DOScale(CS.UnityEngine.Vector3(0, 0, 0), 5):OnComplete(function()
+            Public.ShowQiPao(qipaoIndex)
+        end)
+    end
+end
+
+function Public.StopTime()
+    local obj = CS.UnityEngine.GameObject.Find("GameObject").gameObject
+    obj.transform:DOScale(CS.UnityEngine.Vector3(0, 0, 0), 2):OnComplete(function()
+        qipaoIndex = qipaoIndex + 1
+        Public.ShowQiPao(qipaoIndex)
+    end)
+end
+
+function Public.ShowQiPao(id)
+    if GameMainData.NowmapId ~= "map" then
+        return
+    end
+
+    local temp = ConfigBubbleData.getVarByCustom("ID", tostring(id))
+    if temp == nil then
+        qipaoIndex = 1
+    end
+    print("气泡内容 =", temp.Info)
+    local button = CS.UnityEngine.GameObject.Find(temp.button).gameObject
+    if Public.chatpanel == nil then
+        Public.chatpanel = Public.ResMeg.GetPrefabPath("chatpanel", "map")
+    end
+    if isShow then
+        isShow = false
+        local qipao = UI.Instantiate(Public.chatpanel, button, "qipao")
+        local qipaoInfo = qipao.transform:Find("chatpanel/info").gameObject
+        qipaoInfo:GetComponent('Text').text = temp.Info
+        local tween = qipao.transform:DOAnchorPosY(0, 3.5)
+        tween:OnComplete(function()
+            CS.UnityEngine.GameObject.Destroy(qipao)
+            isShow = true
+            Public.StopTime()
+        end)
+    end
+end
+
+function Public.GetNormalize(pos, target)
+    return CS.UnityEngine.Vector3.Normalize(target - pos)
+end
+
+return Public

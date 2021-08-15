@@ -1,0 +1,37 @@
+ErrorBox = {}
+local UITable = require("UI/UIBox/Base/ErrorBoxView")
+ErrorBox.msg = nil
+
+function ErrorBox.Create()
+    local ui = {}
+    setmetatable(ui, {__index = UITable})
+    ui:Create()
+    ui.layer = 4
+    UI.LoadUI(ui)
+    return ui
+end
+
+function ErrorBox.Awake()
+
+end
+
+--提示信息Box （带有OK按钮的错误对话框)
+--参数2：1、购买调用按钮 2、商店调用按钮 3、装备调用按钮 4、....
+function ErrorBox.OpenBox(msg)
+    ErrorBox.msg = msg
+    ErrorBox.Create()
+end
+
+
+function ErrorBox:ButtonClickHandler(btn)
+    --LuaTools.PlaySound("btnsound")--播放音效
+    if btn.name == "buttonClose" then
+        print("Click->buttonClose")
+        UI.RemoveAllByLevel(4)
+    end
+end
+
+
+function ErrorBox:getmsg()
+    return ErrorBox.msg
+end

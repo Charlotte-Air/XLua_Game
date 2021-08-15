@@ -1,0 +1,93 @@
+DemoEnter = {}
+local UITable = require("UI/login/Base/DemoEnterView")
+require("UI.UIBox.InformationBox")
+require("UI/UIBox/ConfirmBox")
+require("UI/UIBox/ErrorBox")
+require("StaticData/ConfigData/ConfigUserData")
+require("StaticData/ConfigData/ConfigDramaData")
+
+function DemoEnter.Create()
+    local ui = {}
+    setmetatable(ui, {__index = UITable})
+    ui:Create()
+    ui.layer = 1
+    UI.LoadUI(ui)
+    return ui
+end
+
+function UITable:Awake()
+    self:Init()
+    self:InItClientData()
+end
+
+DemoEnter.clientData = {}
+-- 读取本地记录的数据（玩家账号及设置等信息）
+function UITable:InItClientData()
+    local Playerdata = {}
+    Playerdata.money = ConfigUserData.getUserID(1).money
+    Playerdata.level = ConfigUserData.getUserID(1).level
+    Playerdata.exp = ConfigUserData.getUserID(1).exp
+    self.shop_Resources1.text = ConfigUserData.getUserID(1).Resources1
+    self.shop_Resources2.text = ConfigUserData.getUserID(1).Resources2
+    self.shop_Resources3.text = ConfigUserData.getUserID(1).Resources3
+    self.Shop_StoryInfo.text = "进度"..ConfigDramaData.getDramaID(2).Name
+    ConfigUserData.PrintUserData(1)
+    GameMainData.DemoPlayerModel:SetData(Playerdata)
+end
+
+function UITable:ButtonClickHandler(btn)
+    --LuaTools.PlaySound("btnsound")--播放音效
+    if btn == self.buttonEnter then --进入游戏
+        print("Click->EnterGaem")
+        UI.OpenUI("DemoMain")
+        self:Close()
+    elseif btn == self.buttonEquip then --装备系统
+        print("click->EquipSystem")
+        UI.OpenUI("equipDemo")
+    elseif btn == self.buttonShop then  --商店系统
+        print("Click->ShopSystem")
+        UI.OpenUI("shopDemo")
+    elseif btn == self.buttonFriend then --好友系统
+        print("Click->buttonFriend")
+        ConfirmBox.OpenBox("暂未开放")
+    elseif btn == self.buttonQuest then  --任务系统
+        print("Click->buttonQuest")
+        ConfirmBox.OpenBox("暂未开放")
+    elseif btn == self.Achievement then  --成就系统
+        print("Click->Achievement")
+        ConfirmBox.OpenBox("暂未开放")
+    elseif btn == self.Member then       --XX系统
+        print("Click->Member")
+        ConfirmBox.OpenBox("暂未开放")
+    elseif btn == self.ButtonSetSystem then   --设置系统
+        print("Click->SetSystem")
+        ConfirmBox.OpenBox("暂未开放")
+    elseif btn == self.Resources1_Add then --资源1购买
+        print("Click->Resources1_Add")
+        InformationBox.OpenBox("需要购买购买资源1嘛？",1,1)
+    elseif btn == self.Resources2_Add then --资源2购买
+        print("Click->Resources2_Add")
+        InformationBox.OpenBox("是否需要购买资源2嘛？",1,2)
+    elseif btn == self.Resources3_Add then --资源3购买
+        print("Click->Resources3_Add")
+        InformationBox.OpenBox("是否需要购买资源3嘛？",1,3)
+    end
+end
+
+--消费资源初始化
+function DemoEnter.InitResource(UserID,ResourcesType,price)
+    local msg = ConfigUserData.SetResource(UserID,ResourcesType,price)
+    UITable:InItClientData()
+    return msg
+end
+
+--购买资源初始化
+function DemoEnter.AddResource(UserID,ResourcesType,price)
+    local msg = ConfigUserData.AddResource(UserID,ResourcesType,price)
+    if msg == 1 then
+        ConfirmBox.OpenBox("资源购买完成")
+        UITable:InItClientData()
+    else
+        ErrorBox.OpenBox("资源购买失败")
+    end
+end

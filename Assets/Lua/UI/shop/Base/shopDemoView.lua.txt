@@ -1,0 +1,43 @@
+local shopDemoView = {}
+setmetatable(shopDemoView, {__index=UIBase})
+
+function shopDemoView:Create()
+    self.name = "shopDemo"
+    self.path = "shop"
+end
+ 
+
+function shopDemoView:StartInit()   
+  shopDemoView.buyTrue.onClick:AddListener(function() self:ButtonClickHandler(shopDemoView.buyTrue) end)
+  shopDemoView.buyFalse.onClick:AddListener(function() self:ButtonClickHandler(shopDemoView.buyFalse) end)
+  shopDemoView.BtnClose.onClick:AddListener(function() self:ButtonClickHandler(shopDemoView.BtnClose) end)
+end
+  
+  shopDemoView.BtnImageList = {}
+function shopDemoView:SetUICompent(child)
+    if child.name == "BtnClosePage" then 
+      shopDemoView.BtnClosePage = child:GetComponent("Button")
+    elseif child.name == "ShopScroll" then 
+      shopDemoView.ShopScroll =  child:GetComponent("AntVertialScroll")
+    elseif child.name == "buyTrue" then 
+      shopDemoView.buyTrue = child:GetComponent("Button") 
+    elseif child.name == "buyFalse" then 
+      shopDemoView.buyFalse = child:GetComponent("Button")
+    elseif child.name == "shopMsg" then 
+      shopDemoView.shopMsg = child.gameObject
+    elseif child.name == "shop_name" then 
+      shopDemoView.shop_name = child:GetComponent("Text") 
+    elseif child.name == "shop_Info" then 
+      shopDemoView.shop_Info = child:GetComponent("Text")
+    elseif child.name == "shop_price" then 
+      shopDemoView.shop_price = child:GetComponent("Text")
+    elseif child.name == "BtnClose"  then 
+       shopDemoView.BtnClose = child:GetComponent("Button")
+      elseif child.name == "shop_Pic"  then 
+        shopDemoView.shop_Pic = child:GetComponent("Image")
+      elseif child.name == "shop_Resources"  then 
+        shopDemoView.shop_Resources = child:GetComponent("Image")
+    end 
+end 
+
+ return shopDemoView

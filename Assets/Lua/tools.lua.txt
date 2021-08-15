@@ -1,0 +1,83 @@
+JSON = require 'json'
+
+function MathRound(value)
+    value = tonumber(value) or 0
+    return math.floor(value + 0.5)
+end
+
+function Split(inputstr, sep)
+    -- if sep == nil then
+    --         sep = "%s"
+    -- end
+    local t = {};
+    i = 1
+    for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+        t[i] = str
+        i = i + 1
+    end
+    return t
+end
+
+function ToJsonString(v)
+    return JSON:encode(v)
+end
+
+function ToJsonTable(v)
+    return JSON:decode(v)
+end
+
+function DestroyObj(v)
+    UnityEngine.GameObject.Destroy(v)
+end
+
+function ToTimeString(time)
+    if time < 0 then
+        time = 0
+    end
+    local hour = math.floor(time / 3600);
+    local minute = math.fmod(math.floor(time / 60), 60)
+    local second = math.fmod(time, 60)
+    local rtTime = string.format("%02d:%02d:%02d", hour, minute, second)
+    return rtTime
+end
+function FormatTime(time)
+    local tab = os.date("*t", time)
+    local strTime = string.format("%04d.%02d.%02d %02d:%02d:%02d", tab.year, tab.month, tab.day, tab.hour, tab.min,
+        tab.sec)
+    return strTime
+end
+
+function FormatDesc(desc, data)
+    return string.gsub(desc, "{[^}]+}", function(s)
+        local key = string.sub(s, 2, -2)
+        local pre = false
+        if string.find(key, "%%") ~= nil then
+            key = string.sub(key, 1, -2)
+            pre = true
+        end
+        if pre then
+            return string.format("%.1f%%", data[key] * 100)
+        end
+        -- return string.format("%d",data[key])
+        return data[key]
+    end)
+end
+
+function SubString(s, start, len)
+    local tb = {}
+    local index = 1
+    local result = ""
+    for utfChar in string.gmatch(s, "[%z\1-\127\194-\244][\128-\191]*") do
+        if index >= start then
+
+            if index > start + len then
+                return result
+            else
+                result = result .. utfChar
+            end
+        end
+        index = index + 1
+    end
+    return ""
+end
+

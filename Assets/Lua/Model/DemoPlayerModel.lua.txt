@@ -1,0 +1,33 @@
+--玩家信息数据模块
+local DemoPlayerModel = {}
+
+function DemoPlayerModel:SetData(v)
+    self.data = v
+end
+
+function DemoPlayerModel:GetData()
+    return self.data
+end
+
+function DemoPlayerModel:SetEquipData(v)
+    print("SetModuleData->***************")
+    self.EquipData = v
+end
+
+function DemoPlayerModel:GetEquipData()
+    print(#self.EquipData)
+    return self.EquipData
+end
+
+--通过ID获取装备信息
+function DemoPlayerModel:GetEquipByID(equipId)
+   print(#self.EquipData)
+   for i,v1 in ipairs(self.EquipData) do
+       if v1.ID == equipId then
+           return v1
+       end
+   end
+   return 0
+end
+
+return DemoPlayerModel

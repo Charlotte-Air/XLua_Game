@@ -1,0 +1,8 @@
+StaticData = {}
+
+local errorData = require("StaticData/ConfigData/ErrCode")
+StaticData.errorData = {}
+for i, v in ipairs(errorData) do
+    StaticData.errorData[v.ErrorCode] = v.Note
+end
+

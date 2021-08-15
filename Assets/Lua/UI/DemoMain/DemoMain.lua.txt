@@ -1,0 +1,101 @@
+DemoMain = {}
+local UITable = require("UI/DemoMain/Base/DemoMainView")
+require("StaticData/ConfigData/ConfigDemoSkill")
+require("StaticData/ConfigData/ConfigUserData")
+
+function DemoMain.Create()
+    local ui = {}
+    setmetatable(ui, {__index = UITable})
+    ui:Create()
+    ui.layer = 2
+    UI.LoadUI(ui)
+    return ui
+end
+
+function UITable:Awake()
+    self:Init()
+    self:InItClientData()
+    self:AddListener("rayF", self.rayF)
+    self:AddListener("ray", self.ray)
+    self:AddListener("OnTriggerEnter", self.OnTriggerEnter)
+end
+
+DemoMain.clientData = {}
+-- 读取本地记录的数据（玩家账号及设置等信息）
+function UITable:InItClientData()
+    UI.createScene("mapdemo1", "demo") -- 创建场景
+    self.player = UI.Instantiate(Public.ResMeg.GetPrefabPath("PlayerDemo", "map"), nil) --生成主角预制体
+    self.player.transform.localPosition = Vector3(1.4, 0.5, -7.6)
+    self.shop = UI.Instantiate(Public.ResMeg.GetPrefabPath("NpcDemo", "map"), nil) --生成NPC预设体
+    self.shop.transform.localPosition = Vector3(-5, 2, -7.6)
+    self.shop.name = "shopNPC"
+    self.shop.tag = "NPC"
+    self.LV.text = GameMainData.DemoPlayerModel:GetData().level --属性赋值
+    self.ExpNext = ConfigUserData.getUserID(1).ExpNext
+    self.EXP.text = GameMainData.DemoPlayerModel:GetData().exp .. "/" .. self.ExpNext
+end
+
+function UITable:OnTriggerEnter(evtName, msg)
+    UI.OpenUI("shopDemo")
+end
+
+-- 写入   
+function UITable:rayF(evtName, idxz)
+    local msg = public.Split(idxz,"|")
+    print(idxz)
+    self.player.transform:DOKill()
+    self.playerModel.transfrom:LookAt(Vector3(tounmber(msg[2]),self.playerModel.transfrom.position.y,tonumber(msg[3])))
+    --攻击距离判断
+    if Vector3.Distance(Vector3(self.player.transform.position.x,0,self.player.transform.position.z),Vector3(tounmber(msg[2]),0,tounmber(msg[3])))
+    <=GameMainData.DemoPlayerModel:GetData().atkdis then
+        self.Atk(msg[1],msg[2],msg[3])
+    end
+end
+
+function UITable:ray(evtName, x, y, z)
+    self.player.transform:DOKill()
+    self.player.transform:DOMove(Vector3(tonumber(x), 0.5, tonumber(z)), 1):OnComplete(function()end)
+end
+
+function UITable:ButtonClickHandler(btn)
+    -- LuaTools.PlaySound("btnsound") 
+    if btn == self.buttonEquip then
+    UI.OpenUI("equipDemo")
+    elseif btn == self.Skill1 then
+        self:DOKill(GameMainData.Skill1)
+    elseif btn == self.Skill2 then
+        self:DOKill(GameMainData.Skill2)
+    elseif btn == self.Skill3 then
+        self:DOKill(GameMainData.Skill3)
+    end
+end
+
+function UITable:Atk(id,x,z)
+    self.playerAni:Play("attack1")
+    local mons = self:FindMonsById(id)
+    if mons.hp <= 0 then
+        UI.removeObj(mons.obj)
+        self:removeById(mons)
+    end
+end
+
+function UITable:DoSkill(skillId)
+    local skillInfo = ConfigDemoSkill.getVarById(skillId)   --通过配置文件获取技能信息
+    if skillInfo.SkillType == 1 then    --回复技能处理
+        if skillInfo.SkillType == 1 then    --值类型回复
+            GameMainData.DemoPlayerModel:ModifyHp(GameMainData.DemoPlayerModel:GetHp() + skillInfo.Value)
+        elseif skillInfo.SkillType == 2 then    --百分比类型回复
+            GameMainData.DemoPlayerModel:ModifyHp(GameMainData.DemoPlayerModel:GetHP() + (1+skillInfo.Value/100))
+        end
+    elseif skillInfo.SkillType == 2 then    --Buff技能处理
+        GameMainData.DemoPlayerModel:SetBuffData(skillInfo)
+    elseif skillInfo.SkillType == 3 then    --道具技能处理
+        print(skillInfo.Tx)
+        self.Tx=UI.Instantiate(public.ResMeg.GetPrefabPath(skillInfo.Tx,"demo"),nil)
+        self.Tx.name = "火球"
+        self.Tx.transform.position = self.playerModel.transform.forward + Vector3(self.playerModel.transform.position.x,0.8,self.playerModel.transform.position.z)
+        self.Tx.transform:DOMove(self.Tx.transform.position+self.playerModel.transform.forward*20,2):OnComplete(function()
+            Destroy(self.Tx)
+        end)
+    end
+end

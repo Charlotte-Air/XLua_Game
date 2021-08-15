@@ -1,0 +1,46 @@
+local equipDemoView = {}
+setmetatable(equipDemoView, {__index=UIBase})
+
+function equipDemoView:Create()
+    self.name = "equipDemo"
+    self.path = "equip"
+end
+
+function equipDemoView:StartInit()
+  equipDemoView.BtnClose.onClick:AddListener(function() self:ButtonClickHandler(equipDemoView.BtnClose) end)
+  equipDemoView.equipTrue.onClick:AddListener(function() self:ButtonClickHandler(equipDemoView.equipTrue) end)
+  equipDemoView.equipFalse.onClick:AddListener(function() self:ButtonClickHandler(equipDemoView.equipFalse) end)
+end
+
+equipDemoView.BtnImageList = {}
+function equipDemoView:SetUICompent(child)
+    if child.name == "BtnClose" then 
+      equipDemoView.BtnClose = child:GetComponent("Button")
+    elseif child.name == "EquipScroll" then 
+      equipDemoView.EquipScroll =  child:GetComponent("AntVertialScroll")
+    elseif child.name == "noEquipText" then 
+      equipDemoView.noEquipText = child:GetComponent("Text")
+    elseif child.name == "equipTrue" then 
+      equipDemoView.equipTrue = child:GetComponent("Button")
+    elseif child.name == "equipFalse" then 
+      equipDemoView.equipFalse = child:GetComponent("Button")
+    elseif child.name == "nowequipName" then 
+      equipDemoView.nowequipName = child:GetComponent("Text")
+    elseif child.name == "nowAtk" then 
+      equipDemoView.nowAtk = child:GetComponent("Text")
+    elseif child.name == "nowEquipPic" then 
+      equipDemoView.nowEquipPic = child.gameObject
+    elseif child.name == "equipMsg" then 
+      equipDemoView.equipMsg = child.gameObject
+    elseif child.name == "equipMsg_name" then 
+      equipDemoView.equipMsg_name = child:GetComponent("Text")
+    elseif child.name == "equipMsg_Info" then 
+      equipDemoView.equipMsg_Info = child:GetComponent("Text")
+    elseif child.name == "equipMsg_Pic"  then 
+      equipDemoView.equipMsg_Pic = child:GetComponent("Image")
+    elseif child.name == "EquipPic"  then 
+      equipDemoView.EquipPic = child:GetComponent("Image")
+  end
+end
+
+return equipDemoView

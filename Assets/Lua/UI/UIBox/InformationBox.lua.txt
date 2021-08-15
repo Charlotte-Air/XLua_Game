@@ -1,0 +1,58 @@
+InformationBox = {}
+local UITable = require("UI/UIBox/Base/InformationBoxView")
+InformationBox.msg = nil
+InformationBox.ButtonType = nil
+InformationBox.ResourcesType = nil
+
+function InformationBox.Create()
+    local ui = {}
+    setmetatable(ui, {__index = UITable})
+    ui:Create()
+    ui.layer = 4
+    UI.LoadUI(ui)
+    return ui
+end
+
+function InformationBox.Awake()
+    --InformationBox.Create()
+end
+
+--提示信息Box (带有Yes按钮和No按钮的信息对话框)
+--参数2：1、购买调用按钮 2、商店调用按钮 3、装备调用按钮 4、....
+function InformationBox.OpenBox(msg,buttonType,...)
+    InformationBox.msg = msg
+    InformationBox.ButtonType = buttonType
+    InformationBox.ResourcesType = ...
+    InformationBox.Create()
+end
+
+function InformationBox:ButtonClickHandler(btn)
+    --LuaTools.PlaySound("btnsound")--播放音效
+    if btn.name == "buttonYes" then
+        print("Click->OnYes")
+        if InformationBox.ButtonType == 1 then
+            InformationBox.ResourcesAdd()
+            UI.RemoveAllByLevel(4)
+        elseif InformationBox.ButtonType == 2 then
+
+            UI.RemoveAllByLevel(4)
+        elseif InformationBox.ButtonType == 3 then
+            
+            UI.RemoveAllByLevel(4)
+        elseif InformationBox.ButtonType == 4 then
+            UI.RemoveAllByLevel(4)
+        end
+    elseif btn.name == "buttonNo" then
+        print("click->OnNo")
+        UI.RemoveAllByLevel(4)
+    end
+end
+
+function InformationBox:getmsg()
+    return InformationBox.msg
+end
+
+--购买资源调用
+function InformationBox:ResourcesAdd()
+    DemoEnter.AddResource(1,InformationBox.ResourcesType,5000)
+end

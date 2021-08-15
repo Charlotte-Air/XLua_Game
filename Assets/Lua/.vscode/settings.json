@@ -1,0 +1,21 @@
+{
+    "Lua.diagnostics.disable": [
+        "undefined-field"
+    ],
+    "Lua.diagnostics.globals": [
+        "equipDemo",
+        "temp",
+        "tounmber",
+        "ConfigShopItem",
+        "ray",
+        "update",
+        "sockerSendMsg",
+        "public",
+        "CS",
+        "Net",
+        "ConfigPropJson",
+        "typeof",
+        "UnityEngine"
+    ],
+    "git.ignoreLimitWarning": true
+}

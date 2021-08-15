@@ -1,0 +1,52 @@
+require("public")
+require("tools")
+require 'ui'
+require 'net'
+require 'plugin'
+require 'list'
+require 'event'
+require 'ameMainData'
+require 'StaticData/StaticData'
+require 'StaticData/ConfigData/ConfigDemoSkill'
+require 'StaticData/ConfigData/ConfigDramaData'
+require 'StaticData/ConfigData/ConfigEquipItem'
+require 'StaticData/ConfigData/ConfigShopItem'
+require 'StaticData/ConfigData/ConfigUserData'
+
+--创建携程
+local util = require 'xlua.util' 
+local yield_return = (require 'cs_coroutine').yield_return 
+local co = coroutine.create(function() 
+    for i=1 , 10 ,1  do 
+    print(i)
+    yield_return(CS.UnityEngine.WaitForSeconds(3))
+    end
+end)
+
+--调用携程
+assert(coroutine.resume(co))
+
+function Start()
+    
+end
+
+function update()
+    Event.Call("updateG")
+end
+
+function sockerSendMsg(v)
+    print("sockerSendMsg ", v)
+    Event.Call("sockerSendMsg", v)
+end
+
+function ray(x,y,z)
+    Event.Call("ray",x,y,z)
+end
+
+function ray(v)
+    Event.Call("rayF",v)
+end
+
+function OnTriggerEnter(v)
+    Event.Call("OnTriggerEnter",v)
+end

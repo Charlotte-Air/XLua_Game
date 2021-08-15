@@ -1,0 +1,35 @@
+local Render = UI.CreateRenderTable()
+Render.chooseBeC = nil
+
+function Render:SetUICompent(child) 
+    if child.name == "beChoose" then
+        self.choose = child:GetComponent("Button")
+        self.choose.onClick:RemoveAllListeners()
+        self.BG:SetActive(true)
+        self.choose.onClick:AddListener(function()
+            self:chooseB()
+        end)
+    elseif child.name == "buyNum" then
+        self.buyNum = child:GetComponent("Text")
+    elseif child.name == "ItemPic" then
+        self.ItemPic = child:GetComponent("Image")
+    elseif child.name == "BG"  then 
+        self.BG = child.gameObject
+    end
+end
+
+function Render:SetData(v)
+    self.ShopData = v
+    self:RefreshShopItem()
+end
+
+function Render:RefreshShopItem()
+    self.ItemPic.sprite = Public.ResMeg.GetSpritePath(self.ShopData.ID,"Shop")
+    self.buyNum.text = "剩余购买：" .. self.ShopData.num
+end
+
+function Render:chooseB()
+    Event.Call("chooseShop", self.ShopData.ID)
+end
+
+return Render

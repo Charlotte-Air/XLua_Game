@@ -1,0 +1,40 @@
+local Render = UI.CreateRenderTable()
+Render.chooseBeC = nil
+
+function Render:SetUICompent(child)
+	 if child.name == "beChoose" then -- 点某一个装备按钮
+		self.choose = child:GetComponent("Button") 
+		self.choose.onClick:RemoveAllListeners()  
+		self.choose.onClick:AddListener(function() 
+		    self:chooseB()  -- 发消息通知装备模块打开装备详情
+		end)
+	 elseif child.name == "zhuangbei" then -- 已经装备中的显示游戏体
+	    self.zhuangbei = child.gameObject
+	elseif child.name == "ItemPic" then
+		self.ItemPic = child:GetComponent("Image")
+	elseif child.name == "BG" then
+		self.BG = child.gameObject
+	end
+end
+
+function Render:SetData(v) 
+	self.EquipData = v 
+	self:RefreshEquipItem()
+end
+
+function Render:RefreshEquipItem() 
+	self.ItemPic.sprite = Public.ResMeg.GetSpritePath(self.EquipData.ID,"Item")
+    if self.EquipData.ID == ConfigEquipItem.nowequipId then
+		self.zhuangbei:SetActive(true)
+		self.BG:SetActive(true)
+    else
+       self.zhuangbei:SetActive(false)
+	   self.BG:SetActive(false)
+    end
+end
+
+function Render:chooseB()  -- 发消息通知装备模块打开装备详情
+	Event.Call("chooseEquip",self.EquipData.ID)
+end
+
+return Render

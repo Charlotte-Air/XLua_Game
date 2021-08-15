@@ -1,0 +1,114 @@
+shopDemo = {}
+local UITable = require("UI/shop/Base/shopDemoView")
+local UIShopScrollRender = require("UI/shop/UIShopScrollDemoRender")
+require('StaticData/ConfigData/ConfigShopItem')
+UIShopScrollRender.__index = UIShopScrollRender
+
+--加载并创建功能模块预制体
+function shopDemo.Create()
+    local ui = {}
+    setmetatable(ui, {__index = UITable})
+    ui:Create()
+    ui.layer = 2
+    UI.LoadUI(ui)
+    return ui
+end
+
+--商店View脚本的初始化和逻辑脚本初始化
+function UITable:Awake()
+    self:StartInit()
+    self.oneLineNum = 4
+    self.CrewList1 = {}
+    self.CrewItemList1 = {}
+    self.ShopScroll.renderHandler = function(nIndex, tempTransRect, nIndexTrans)
+    self:CrewItemRenderHandel1(nIndex, tempTransRect, nIndexTrans)
+    end
+    self:Init()
+    self:AddListener("chooseShop", self.chooseShop)
+end
+
+--初始化
+function UITable:Init()
+    self:RefShop()
+end
+
+--刷新商店
+function UITable:RefShop()
+    local shopdataTemp = {}
+    print("ShopItem->"..ConfigShopItem.getShopSize())
+    self.CrewList1 = ConfigShopItem.ShopData
+    local nTotal = #self.CrewList1
+    local nLine = nTotal / self.oneLineNum
+    self.ShopScroll:SetCount(math.ceil(nLine))
+end
+
+function UITable:CrewItemRenderHandel1(nIndex, tempTransRect, nIndexTrans)
+    local nDataTotal = 0
+    local nNum = 0
+    if self.CrewItemList1[nIndexTrans] == nil then
+        self.CrewItemList1[nIndexTrans] = {}
+        setmetatable(self.CrewItemList1[nIndexTrans], UIShopScrollRender)
+        self.CrewItemList1[nIndexTrans]:Init(tempTransRect)
+    end
+    nDataTotal = #self.CrewList1
+    for i = 1, self.oneLineNum do
+        nNum = nIndex * self.oneLineNum + i
+        if nNum <= nDataTotal then
+            self.CrewItemList1[nIndexTrans].lineList[i]:SetData(self.CrewList1[nNum])
+            self.CrewItemList1[nIndexTrans].lineList[i].transform.gameObject:SetActive(true)
+        else
+            self.CrewItemList1[nIndexTrans].lineList[i].transform.gameObject:SetActive(false)
+        end
+    end
+end
+
+--设置Data
+function UITable:SetData(v)
+    self.data = v
+end
+
+--Unity首次调用
+function UITable:Start()
+    self:StartInit()
+
+end
+
+--Button点击事件
+function UITable:ButtonClickHandler(btn)
+    -- LuaTools.PlaySound("btnsound")
+    if btn == self.buyTrue then -- 
+        if ConfigShopItem.getshopByID(self.nowSeeId).num > 0 then
+            self.shopMsg:SetActive(false)
+            ConfigShopItem.buyShop(self.nowSeeId)
+            local User = {}
+            local Item = {}
+            Item = ConfigShopItem.getshopByID(self.nowSeeId)
+            local msg = DemoEnter.InitResource(1,Item.Resources,Item.price)
+            print(msg)
+            if msg == 1 then
+                ConfirmBox.OpenBox("购买完成")
+                self:Init()
+            else
+                ErrorBox.OpenBox("抱歉资源不够无法购买")
+            end
+        else
+            ErrorBox.OpenBox("购买已达到上限")
+        end
+    elseif btn == self.buyFalse then -- 
+        self.shopMsg:SetActive(false)
+    elseif btn == self.BtnClose then -- 
+        self:Close()
+    end
+end
+
+--选择道具调用Info
+function UITable:chooseShop(evtName, shopid)
+    self.shopMsg:SetActive(true)
+    self.nowSeeId = shopid;
+    self.shop_name.text = ConfigShopItem.getshopByID(shopid).Name;
+    self.shop_Info.text = ConfigShopItem.getshopByID(shopid).jieshao;
+    self.shop_price.text = ConfigShopItem.getshopByID(shopid).price;
+    self.shop_Pic.sprite = Public.ResMeg.GetSpritePath(ConfigShopItem.getshopByID(shopid).ID,"Shop")
+    self.shop_Resources.sprite = Public.ResMeg.GetSpritePath(ConfigShopItem.getshopByID(shopid).Resources,"Resources")
+end
+

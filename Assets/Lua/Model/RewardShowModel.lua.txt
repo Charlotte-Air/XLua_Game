@@ -1,0 +1,201 @@
+local RewardShowModel = {}  
+require("UI/rewardshow/rewardshow") 
+local MoneyData = {}    
+local PropData = {}    
+local wuGongData = {} 
+local equipData = {}
+local heroData = {}
+local soulData = {}
+local bookspData = {}
+local xinDeData = {}
+local equipSpData = {}
+local ScrolllData = {} 
+local petData = {}
+local petChipData = {}
+local petEquipData = {}
+local petPropData = {} 
+local herartCardData = {}  
+local jieSuanShowReward = {}
+
+function RewardShowModel:SetData(v)    
+	 if #v <= 0 then   
+		return 
+	end
+	money = {["title"]="获得奖励",["yuanBao"]=0,["goldLeaf"]=0,["silver"]=0} 
+	propReward = {} 
+	wuGongReward = {} 
+	equipReward = {}
+	heroReward = {}
+	soulReward = {}
+	bookspReward = {}
+	xinDeReward = {}
+	equipSpReward = {}
+	ScrollReward = {}  
+	petReward = {}  
+	petChipReward = {}   
+	petEquipReward = {}  
+	petPropReward = {}   
+	herartCardReward = {}
+	jiesuanReward = {}
+	for i,v1 in ipairs(v) do  
+		if v1.title ~= "" then 
+			money["title"] = v1.title 
+		end
+		if v1.yuanBao > 0 then
+			money["yuanBao"] = v1.yuanBao + money["yuanBao"]
+		end
+		if v1.goldLeaf > 0 then
+			money["goldLeaf"] = v1.goldLeaf + money["goldLeaf"]
+		end
+		if v1.silver > 0 then
+			money["silver"] = v1.silver + money["silver"]
+		end
+
+		for i,v2 in ipairs(v1.itemList) do
+			if propReward[v2.itemId] ~= nil then
+				propReward[v2.itemId] = propReward[v2.itemId] + v2.num
+			else
+				propReward[v2.itemId] = v2.num 
+			end
+			table.insert(jiesuanReward,"p*" .. v2.itemId)
+		end
+		for i,v2 in ipairs(v1.bookList) do
+			if wuGongReward[v2.metaId] ~= nil then
+				wuGongReward[v2.metaId] = wuGongReward[v2.metaId] + 1
+			else
+				wuGongReward[v2.metaId] = 1
+			end
+			table.insert(jiesuanReward,"wg*" .. v2.metaId)
+		end
+		for i,v2 in ipairs(v1.equipList) do
+			if equipReward[v2.metaId] ~= nil then
+				equipReward[v2.metaId] = equipReward[v2.metaId] + 1
+			else
+				equipReward[v2.metaId] = 1
+			end
+			table.insert(jiesuanReward,"zb*" .. v2.metaId)
+		end
+		for i,v2 in ipairs(v1.heroList) do
+			if heroReward[v2.heroId] ~= nil then
+				heroReward[v2.heroId] = heroReward[v2.heroId] + 1 
+			else
+				heroReward[v2.heroId] = 1 
+			end
+			table.insert(jiesuanReward,"dz*" .. v2.heroId)
+			RewardShowModel.heroId = v2.heroId
+			RewardShowModel.soulNum =0 
+		end
+ 		for i,v2 in ipairs(v1.heroSoulList) do
+			if soulReward[v2.soulId] ~= nil then
+				soulReward[v2.soulId] = soulReward[v2.soulId] + v2.num
+			else
+				soulReward[v2.soulId] = v2.num
+			end
+			RewardShowModel.heroId = v2.soulId
+			RewardShowModel.soulNum = v2.num 
+		end
+ 		for i,v2 in ipairs(v1.bookSPList) do
+			if bookspReward[v2.bookSPId] ~= nil then
+				bookspReward[v2.bookSPId] = bookspReward[v2.bookSPId] + v2.num
+			else
+				bookspReward[v2.bookSPId] = v2.num
+			end
+			table.insert(jiesuanReward,"wgs*" .. v2.bookSPId)
+		end
+		for i,v2 in ipairs(v1.rewardxinDeList) do
+			if xinDeReward[v2.xinDeId] ~= nil then
+				xinDeReward[v2.xinDeId] = xinDeReward[v2.xinDeId] + v2.num
+			else
+				xinDeReward[v2.xinDeId] = v2.num
+			end
+		end
+		for i,v2 in ipairs(v1.equipSPList) do
+			if equipSpReward[v2.equipSPId] ~= nil then
+				equipSpReward[v2.equipSPId] = equipSpReward[v2.equipSPId] + v2.num
+			else
+				equipSpReward[v2.equipSPId] = v2.num 
+			end
+			table.insert(jiesuanReward,"zbs*" .. v2.equipSPId)
+		end
+		for i,v2 in ipairs(v1.scrollList) do
+			if ScrollReward[v2.scrollId] ~= nil then
+				ScrollReward[v2.scrollId] = ScrollReward[v2.scrollId] + v2.num
+			else
+				ScrollReward[v2.scrollId] = v2.num
+			end
+			table.insert(jiesuanReward,"jz*" .. v2.scrollId)
+		end 
+
+		for i,v2 in ipairs(v1.petList) do
+			if petReward[v2.petId] ~= nil then
+				petReward[v2.petId] = petReward[v2.petId] + v2.num
+			else
+				petReward[v2.petId] = v2.num
+			end
+			GameMainData.IsCadr_petId = v2.petId
+			table.insert(jiesuanReward,"pet*" .. v2.petId)
+		end 
+		for i,v2 in ipairs(v1.petChip) do
+			if petChipReward[v2.petId] ~= nil then
+				petChipReward[v2.petId] = petChipReward[v2.petId] + v2.num
+			else
+				petChipReward[v2.petId] = v2.num
+			end
+			table.insert(jiesuanReward,"petsp*" .. v2.petId)
+		end 
+ 
+		for i,v2 in ipairs(v1.petEquip) do
+			if petEquipReward[v2.petEquipId] ~= nil then
+				petEquipReward[v2.petEquipId] = petEquipReward[v2.petEquipId] + v2.num
+			else
+				petEquipReward[v2.petEquipId] = v2.num
+			end
+			table.insert(jiesuanReward,"petequip*" .. v2.petEquipId)
+		end 
+
+		for i,v2 in ipairs(v1.petProp) do
+			if petPropReward[v2.petPropId] ~= nil then
+				petPropReward[v2.petPropId] = petPropReward[v2.petPropId] + v2.num
+			else
+				petPropReward[v2.petPropId] = v2.num
+			end
+			table.insert(jiesuanReward,"petprop*" .. v2.petPropId)
+		end  
+		for i,v2 in ipairs(v1.cardList) do
+			if herartCardReward[v2.cardId] ~= nil then
+				herartCardReward[v2.cardId] = herartCardReward[v2.cardId] + v2.num
+			else
+				herartCardReward[v2.cardId] = v2.num
+			end
+			table.insert(jiesuanReward,"card*" .. v2.cardId)
+		end  
+	end  
+	 self.MoneyData = money
+	 self.PropData = propReward
+	 self.wuGongData = wuGongReward
+	 self.equipData = equipReward
+	 self.heroData = heroReward
+	 self.soulData = soulReward
+	 self.bookspData = bookspReward
+	 self.xinDeData = xinDeReward
+	 self.equipSpData = equipSpReward
+	 self.ScrolllData = ScrollReward 
+	 self.petData = petReward
+	 self.petChipData = petChipReward 
+	 self.petEquipData = petEquipReward
+	 self.petPropData = petPropReward 
+	 self.herartCardData = herartCardReward  
+	 self.jieSuanShowReward = jiesuanReward
+end 
+ 
+function RewardShowModel:BackCardMsg()
+
+ 	print(RewardShowModel.heroId,RewardShowModel.soulNum)
+	return RewardShowModel.heroId,RewardShowModel.soulNum
+end
+
+function RewardShowModel:GetJieSuanShow()
+	return self.jieSuanShowReward
+end
+  
+ return RewardShowModel

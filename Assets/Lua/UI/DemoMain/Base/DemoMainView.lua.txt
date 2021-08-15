@@ -1,0 +1,26 @@
+local DemoMainView = {}
+setmetatable(DemoMainView, {__index=UIBase})
+
+function DemoMainView:Create()
+    self.name = "DemoMain"
+    self.path = "DemoMain"
+end
+
+function DemoMainView:SetUICompent(child)
+    if child.name == "HP" then
+		DemoMainView.buttonEnter = child:GetComponent("Image")
+	elseif child.name == "buttonEquip" then 
+		DemoMainView.buttonEquip = child:GetComponent("Button")
+	elseif child.name == "EXP" then 
+		DemoMainView.EXP = child:GetComponent("Text")
+	elseif child.name == "LV" then 
+		DemoMainView.LV = child:GetComponent("Text")
+	end
+end
+
+function DemoMainView:Init()   
+	  DemoMainView.buttonEquip.onClick:AddListener(function() self:ButtonClickHandler(DemoMainView.buttonEquip) end)
+end
+
+return DemoMainView
+

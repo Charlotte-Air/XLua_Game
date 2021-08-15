@@ -1,0 +1,31 @@
+local InformationBoxView = {}
+setmetatable(InformationBoxView, {__index=UIBase})
+
+function InformationBoxView:Create()
+    self.name = "Information"
+    self.path = "box"
+end
+
+function InformationBoxView:SetUICompent(child)
+    if child.name == "msg" then
+        InformationBoxView.msg = child:GetComponent("Text")
+        InformationBoxView.msg.text = InformationBox.getmsg()
+    elseif child.name == "buttonYes" then
+        InformationBoxView.buttonYes = child:GetComponent("Button")
+    elseif child.name == "buttonNo" then
+        InformationBoxView.buttonNo = child:GetComponent("Button")
+        InformationBoxView.Init()
+    end
+end
+
+function InformationBoxView:Init()
+    InformationBoxView.buttonYes.onClick:AddListener(function() InformationBox:ButtonClickHandler(InformationBoxView.buttonYes) end)
+    InformationBoxView.buttonNo.onClick:AddListener(function() InformationBox:ButtonClickHandler(InformationBoxView.buttonNo) end)
+end
+
+function InformationBoxView:setText(msg)
+    InformationBoxView.msg.txet = msg
+end
+
+return InformationBoxView
+

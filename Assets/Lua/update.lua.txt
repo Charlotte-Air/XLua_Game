@@ -1,0 +1,10 @@
+update = {}
+local updateFunc = {}
+
+function update.Update()
+    for k, v in pairs(updateFunc) do
+        v()
+    end
+end
+
+return update

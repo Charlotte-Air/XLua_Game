@@ -1,0 +1,25 @@
+local ErrorBoxView = {}
+setmetatable(ErrorBoxView, {__index=UIBase})
+
+function ErrorBoxView:Create()
+    self.name = "Error"
+    self.path = "box"
+end
+
+function ErrorBoxView:SetUICompent(child)
+    if child.name == "msg" then
+        ErrorBoxView.msg = child:GetComponent("Text")
+        ErrorBoxView.msg.text = ErrorBox.getmsg()
+    elseif child.name == "buttonClose" then
+        ErrorBoxView.buttonClose = child:GetComponent("Button")
+        ErrorBoxView.Init()
+    end
+end
+
+function ErrorBoxView:Init()
+    ErrorBoxView.buttonClose.onClick:AddListener(function() ErrorBox:ButtonClickHandler(ErrorBoxView.buttonClose) end)
+end
+
+
+return ErrorBoxView
+

@@ -1,0 +1,388 @@
+UI = {}
+-- --print("load lua UI 1")
+require("UI/LuaAntList")
+require("UI/UIBase")
+
+-- --print("load lua UI 2")
+local arrUI = {}
+local tfCanvas = CS.UnityEngine.GameObject.Find("Canvas").transform
+UI._3DObject = CS.UnityEngine.GameObject.Find("3DObject").transform
+UI.CameraFather = CS.UnityEngine.GameObject.Find("CameraFather")
+local layerBox = {}
+local uiTableBox = {}
+-- --print("tfCanvas.childCount == " , tfCanvas.childCount)
+for i = 0, tfCanvas.childCount - 1 do
+    -- --print("child == " ,tfCanvas:GetChild(i).name)
+    table.insert(layerBox, tfCanvas:GetChild(i))
+    uiTableBox[i + 1] = {}
+end
+function UI.getCanvas()
+    return tfCanvas
+end
+
+function UI.Instantiate(prefab, parent)
+    local obj = CS.UnityEngine.GameObject.Instantiate(prefab)
+    if parent ~= nil then
+        obj.transform:SetParent(parent)
+        obj.transform:SetAsLastSibling()
+        -- obj.transform.localPosition = Vector3(0,0,0);
+        -- obj.transform.localScale = Vector3(1,1,1);
+    end
+    return obj
+end
+function UI.Instantiate(prefab, parent, name)
+    -- --print("prefab " , prefab)
+    local obj = CS.UnityEngine.GameObject.Instantiate(prefab)
+    if parent ~= nil then
+        if name ~= nil then
+            obj.name = name
+        end
+        obj.transform:SetParent(parent.transform, false)
+        -- obj.transform.localPosition = CS.UnityEngine.Vector3(0,0,0);
+        -- obj.transform.localScale = CS.UnityEngine.Vector3(1,1,1);
+    end
+    return obj
+end
+
+function UI.SetEnable(value)
+    local canvasGroup = layerBox[1]:GetComponent("CanvasGroup")
+    if canvasGroup == nil then
+        canvasGroup = layerBox[1].gameObject:AddComponent("CS.UnityEngine.CanvasGroup")
+    end
+    canvasGroup.blocksRaycasts = value
+end
+function UI.GetCanvas()
+    return tfCanvas
+end
+
+local uiIndex = 0
+local function GetIndex()
+    uiIndex = uiIndex + 1
+    return uiIndex
+end
+
+function UI.LoadUI(uiTable, ...)
+    -- --print("LoadUI ********1 " ) 
+    -- --print("yy1 path=",uiTable.path,"  name=",uiTable.name,"",uiTable.layer) 
+
+    local obj = nil
+    if uiTable.layer == 99 then
+
+        obj = UI.Instantiate(Public.GetModule(uiTable.name, uiTable.path), UI._3DObject, uiTable.name)
+    else
+        -- --print("LoadUI ********2 layerBox[uiTable.layer].name  == " ,layerBox[uiTable.layer].name) 
+        obj = UI.Instantiate(Public.GetModule(uiTable.name, uiTable.path), layerBox[uiTable.layer], uiTable.name)
+    end
+
+    uiTable.gameObject = obj
+    uiTable.transform = obj.transform
+    UI.FindUICompent(uiTable, uiTable.transform)
+    -- --print("uiTable.layer " ,uiTable.layer)
+    -- --print("uiTableBox " ,uiTableBox[uiTable.layer])
+    if uiTableBox[uiTable.layer] ~= nil then
+        -- --print("table.insert uiTableBox    uiTable.layer == " ,uiTable.layer)
+        if uiTable.layer == 4 then
+            --  for i = uiTable.layer, #uiTableBox,1 do 
+            UI.RemoveAllByLevel(4)
+            --    end 
+        end
+        table.insert(uiTableBox[uiTable.layer], uiTable)
+    end
+
+    if uiTable.needBlack == true then
+        local objBlack =
+            UI.Instantiate(Public.GetGameObject("MainUI"), layerBox[uiTable.layer], layerBox[uiTable.layer])
+
+        objBlack.transform:SetSiblingIndex(0)
+    end
+
+end
+
+function UI.StartUI(uiTable)
+    if uiTable ~= nil then
+        uiTable:Start()
+        Event.Call(EventType.LoadUI, uiTable.name)
+        GameData.guide:Run("OpenUI_" .. uiTable.name) --
+    end
+end
+
+local function DoDestroyUI(uiTablea)
+    uiTablea:OnClose()
+    CS.UnityEngine.GameObject.Destroy(uiTablea.gameObject)
+    uiTablea:Clear()
+end
+
+function UI.RemoveUI(uiTable)
+    -- --print("RemoveUI************************************************ ",uiTable.path," ",uiTable.name," ",uiTable.layer) 
+    local uiTableArr = uiTableBox[uiTable.layer]
+    local index = -1
+    if uiTableArr == nil then
+        error("RemoveUI uiTableArr is nil uiTable.layer =" .. uiTable.layer)
+        return
+    end
+    for i, v in ipairs(uiTableArr) do
+        if v == uiTable then
+            index = i
+        end
+    end
+    if index == -1 then
+        return
+    end
+
+    if uiTable.layer == 1 then
+        for i = #uiTableArr, index, -1 do
+            local tempUI = uiTableArr[i]
+            table.remove(uiTableArr, i)
+            tempUI:DoClose()
+        end
+
+        index = index - 1
+
+        if uiTableArr[index] ~= nil then
+            uiTableArr[index]:OnEnable()
+        end
+    else
+        table.remove(uiTableArr, index)
+        uiTable:DoClose()
+    end
+end
+
+function UI.RemoveAll()
+    -- --print("UI.RemoveAll")
+    local uiTableArr = uiTableBox[1]
+    for i = #uiTableArr, 1, -1 do
+        local tempUI = uiTableArr[i]
+        if tempUI.lockui ~= true then
+            table.remove(uiTableArr, i)
+            tempUI:DoClose()
+        end
+    end
+
+    uiTableArr = uiTableBox[3]
+    for i = #uiTableArr, 1, -1 do
+        -- print(i,uiTableArr[i].name)
+        local tempUI = uiTableArr[i]
+        table.remove(uiTableArr, i)
+        tempUI:DoClose()
+    end
+end
+
+function UI.GetUI(name)
+    local arrUI = uiTableBox[1]
+    for i, v in ipairs(arrUI) do
+        if v.name == name then
+            return v
+        end
+    end
+    arrUI = uiTableBox[3]
+    for i, v in ipairs(arrUI) do
+        if v.name == name then
+            return v
+        end
+    end
+    return nil
+end
+-- 将3Dobject下的 按钮和可操控元素放入
+function UI.Find3DCompent(ui)
+    -- --print("ui.transform.a " , ui.name)
+    -- --print("ui.transform.b " , ui.gameObject.name)
+    -- --print("ui.transform.childCount " , ui.transform.childCount)
+    for i = 0, ui.transform.childCount - 1 do
+        local child = ui.transform:GetChild(i)
+        if child.tag == "uiCompnent" then
+            ui:SetUICompent(child)
+        end
+        if child.childCount > 0 then
+            UI.FindUICompent(ui, child)
+        end
+    end
+end
+
+function UI.FindUICompent(ui, transform)
+    for i = 0, transform.childCount - 1 do
+        local child = transform:GetChild(i)
+        -- --print("** " , child.name )
+        if child.tag == "uiCompnent" then
+            ui:SetUICompent(child)
+        end
+        if child.childCount > 0 then
+            UI.FindUICompent(ui, child)
+        end
+    end
+end
+
+function UI.FindRenderUI(ui, transform)
+    for i = 0, transform.childCount - 1 do
+        local child = transform:GetChild(i)
+        ui:SetUICompent(child)
+        if child.childCount > 0 then
+            UI.FindRenderUI(ui, child)
+        end
+    end
+end
+
+function UI.CreateRenderTable()
+    local Render = {}
+    Render.__index = Render
+
+    Render.Awake = function(self)
+    end
+
+    Render.Init = function(self, tf)
+        self.transform = tf
+        self:Awake()
+        UI.FindRenderUI(self, self.transform)
+    end
+
+    Render.SetUICompent = function(self, child)
+
+    end
+
+    return Render
+end
+
+function UI.DropGold(p1, p2)
+    CS.LuaTools.DropItem("MainUI", "DropItemGold", layerBox[1], p1, p2, 0.5, 1)
+end
+
+function UI.DropItemWorld(p1, p2, name)
+    CS.LuaTools.DropItemWorld("MainUI", name, layerBox[1], p1, p2, 0.5, 1)
+end
+
+function UI.DestroyChildren(transform)
+    for i = transform.childCount - 1, 0, -1 do
+        if transform:GetChild(i).gameObject ~= nil then
+            CS.UnityEngine.GameObject.Destroy(transform:GetChild(i).gameObject)
+        end
+    end
+end
+
+local UIRootCanvas = CS.UnityEngine.GameObject.Find("Canvas")
+UI.rootLoading = UIRootCanvas.transform:Find("levelLoading")
+local objLoading = UI.Instantiate(Public.GetPrefab("loader", "public"), UI.rootLoading)
+objLoading:SetActive(false)
+
+function UI.SetLoading(v)
+    objLoading:SetActive(v)
+end
+
+require("UI/shop/shopDemo")
+require("UI/equip/equipDemo")
+require("UI/login/DemoEnter")
+require("UI/DemoMain/DemoMain")
+
+function UI.createScene(name, path)
+    local go = UI.Instantiate(Public.ResourceManager.GetPrefabPath(name, path), UI._3DObject)
+end
+
+function UI.Open3d(name, ...)
+
+end
+
+function UI.OpenUI(name, ...)
+
+    local uiTable = nil
+    -- print("OpenUI  name ******************************************** = " , name)
+    -- print("OpenUI   _G[name] ******************************************** = " ,  _G[name])
+
+    if _G[name] ~= nil then
+        uiTable = _G[name].Create()
+
+    else
+        return nil
+    end
+
+    if select("#", ...) > 0 then
+
+        uiTable:Awake(...)
+    else
+        uiTable:Awake()
+    end
+end
+
+function UI.RemoveAllByLevel(level)
+    for i, v in ipairs(uiTableBox[level]) do
+        -- --print("RemoveAllByLevel    name  ==  "  ,v.name ) 
+        UI.RemoveUI(v)
+    end
+end
+
+if UI.canvas == nil then
+    UI.canvas = CS.UnityEngine.GameObject.Find("Canvas").transform
+end
+if UI.canvasJ == nil then
+    local temp = CS.UnityEngine.GameObject.Find("CanvasJ")
+    if temp ~= nil then
+        UI.canvasJ = CS.UnityEngine.GameObject.Find("CanvasJ").transform
+    end
+
+end
+
+if UI.canvasLoad == nil then
+    local temp = CS.UnityEngine.GameObject.Find("canvasLoad")
+    if temp ~= nil then
+        UI.canvasLoad = CS.Public.instance.canvasLoad.transform
+    end
+end
+
+function UI.hideCanvas()
+    if UI.canvas ~= nil then
+        UI.canvas.gameObject:SetActive(false)
+
+    end
+end
+
+function UI.showCanvas()
+    if UI.canvas ~= nil then
+        UI.canvas.gameObject:SetActive(true)
+
+    end
+end
+function UI.hideCanvasJ()
+    if UI.canvasJ ~= nil then
+        UI.canvasJ.gameObject:SetActive(false)
+
+    end
+end
+function UI.showCanvasJ()
+    if UI.canvasJ ~= nil then
+        UI.canvasJ.gameObject:SetActive(true)
+
+    end
+end
+
+function UI.ChangeMap(fromTileId, toTileId)
+    local childCount = UI._3DObject.childCount
+    -- --print("childCount " ,childCount)
+    for i = 0, childCount - 1, 1 do
+        CS.UnityEngine.GameObject.Destroy(UI._3DObject:GetChild(i).gameObject);
+    end
+
+    obj = UI.Instantiate(Public.GetModule(toTileId, "map"), UI._3DObject, toTileId)
+end
+
+function UI.InsMap(mapid)
+    local childCount = UI._3DObject.childCount
+    for i = 0, childCount - 1, 1 do
+        CS.UnityEngine.GameObject.Destroy(UI._3DObject:GetChild(i).gameObject);
+    end
+
+    obj = UI.Instantiate(Public.GetModule(mapid, "map"), UI._3DObject, mapid)
+    canvasPrefab = obj.transform:GetChild(0).gameObject.transform:GetChild(0)
+    for i = 1, obj.transform.childCount - 1 do
+        canvasobj = UI.Instantiate(canvasPrefab, obj.transform:GetChild(i), "Canvas")
+        canvasobj.transform:GetChild(0).name = "buttonMap" .. string.sub(obj.transform:GetChild(i).name, 10, -1)
+    end
+end
+
+function UI:GetModelByID(ID)
+
+    local temp = Public.ResourceManager.GetPrefabPath(ID, "units")
+    if temp == nil then
+        temp = Public.ResourceManager.GetPrefabPath("C10", "units")
+    end
+    return temp
+
+end
+
+return uiTable

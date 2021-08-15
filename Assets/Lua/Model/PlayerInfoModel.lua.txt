@@ -1,0 +1,116 @@
+local PlayerInfoModel = {}
+ 
+local headId = ""
+ function PlayerInfoModel:SetData(v)
+	if v.playerId == "" then
+		return
+	end
+	self.data = v   
+	--print("headId",headId)
+	--print("self.data.herartTime",self.data.herartTime)
+	--如果headId为空或者发生改变时  通知易容
+	if headId ~= "" then  
+ 		if headId ~= self.data.headId then 
+			headId = self.data.headId
+			Event.Call("HerartTimeShow")   
+		end 
+	else  
+		headId = self.data.headId 
+	end  
+ 	Event.Call("changeUserInfo" , self.data) 
+end
+
+function PlayerInfoModel:Level()
+    if self.data.level ~= nil then
+		return  self.data.level
+ 	else 
+		return 5
+	end 
+end
+
+function PlayerInfoModel:playerId() 
+	 return self.data.playerId 
+end
+
+function PlayerInfoModel:getSilver() 
+	return self.data.silver 
+end
+
+function PlayerInfoModel:getYuanBao() 
+	return self.data.yuanBao 
+end
+
+function PlayerInfoModel:getTili() 
+	return self.data.vit 
+end
+
+function PlayerInfoModel:getJingli() 
+	return self.data.vim 
+end
+
+function PlayerInfoModel:getYuanqi() 
+	return self.data.yuanQi 
+end
+
+function PlayerInfoModel:getPlayerId() 
+	return self.data.playerId 
+end
+
+function PlayerInfoModel:getNickName() 
+ 	return self.data.nickName 
+end
+
+function PlayerInfoModel:getVip() 
+	return self.data.vip 
+end
+
+function PlayerInfoModel:getTitle() 
+	return self.data.title 
+end
+
+function PlayerInfoModel:getGender() 
+	return self.data.gender 
+end
+
+function PlayerInfoModel:getHeadId() 
+	return self.data.headId 
+end
+
+
+function PlayerInfoModel:GetfightValue() 
+	return self.data.fightValue 
+end
+
+
+function PlayerInfoModel:Fushi() 
+	return self.data.fushi 
+end
+
+function PlayerInfoModel:Fase() 
+	return self.data.fase 
+end
+
+function PlayerInfoModel:Fuse() 
+	return self.data.fuse 
+end
+
+function PlayerInfoModel:Faxing() 
+	return self.data.faxing 
+end
+
+function PlayerInfoModel:Shuxiang() 
+	return self.data.shuxiang 
+end
+
+function PlayerInfoModel:getHeartTime() 
+	return self.data.herartTime 
+end
+
+function PlayerInfoModel:SetOneData(type_, value)
+   if type_ == "vip" then
+		self.data.vip = value
+ 
+   end 
+ end 
+
+return PlayerInfoModel

@@ -1,0 +1,532 @@
+/target:library
+/nowarn:0169
+/nowarn:0649
+/out:Temp/Assembly-CSharp.dll
+/debug:portable
+/optimize-
+/nostdlib+
+/preferreduilang:en-US
+/langversion:latest
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.AndroidJNIModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.AnimationModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.AssetBundleModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.AudioModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.ClothModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.DSPGraphModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.DirectorModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.GameCenterModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.GridModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.HotReloadModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.IMGUIModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.InputModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.InputLegacyModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.LocalizationModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.Physics2DModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.ProfilerModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.StreamingModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.SubstanceModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.SubsystemsModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.TLSModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.TextCoreModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.TilemapModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.UIModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.UIElementsModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.UNETModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.UmbraModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityTestProtocolModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAssetBundleModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.VFXModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.VRModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.VehiclesModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.VideoModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/Managed/UnityEditor.dll
+/reference:Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll
+/reference:Library/ScriptAssemblies/Unity.Timeline.Editor.dll
+/reference:Library/ScriptAssemblies/UnityEngine.Monetization.dll
+/reference:Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll
+/reference:Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll
+/reference:Library/ScriptAssemblies/Unity.VSCode.Editor.dll
+/reference:Library/ScriptAssemblies/UnityEngine.Purchasing.Stores.dll
+/reference:Library/ScriptAssemblies/Purchasing.Common.dll
+/reference:Library/ScriptAssemblies/UnityEngine.Advertisements.dll
+/reference:Library/ScriptAssemblies/UnityEngine.Purchasing.dll
+/reference:Library/ScriptAssemblies/UnityEditor.Purchasing.dll
+/reference:Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
+/reference:Library/ScriptAssemblies/UnityEngine.UI.dll
+/reference:Library/ScriptAssemblies/Unity.Timeline.dll
+/reference:Library/ScriptAssemblies/UnityEngine.Purchasing.Codeless.dll
+/reference:Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll
+/reference:Library/ScriptAssemblies/UnityEngine.Purchasing.SecurityCore.dll
+/reference:Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll
+/reference:Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll
+/reference:Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll
+/reference:Library/ScriptAssemblies/Unity.Rider.Editor.dll
+/reference:Library/ScriptAssemblies/Unity.Mathematics.dll
+/reference:Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll
+/reference:Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll
+/reference:Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll
+/reference:Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll
+/reference:Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll
+/reference:Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll
+/reference:Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll
+/reference:Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.dll
+/reference:Library/ScriptAssemblies/Unity.Mathematics.Editor.dll
+/reference:Library/ScriptAssemblies/Unity.TextMeshPro.dll
+/reference:Library/ScriptAssemblies/Unity.2D.Common.Editor.dll
+/reference:Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll
+/reference:Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll
+/reference:Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll
+/reference:Library/ScriptAssemblies/UnityEngine.Purchasing.SecurityStub.dll
+/reference:Library/ScriptAssemblies/UnityEditor.UI.dll
+/reference:Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll
+/reference:Assets/Plugin/Newtonsoft.Json.dll
+/reference:Assets/Plugin/DOTween/DOTween.dll
+/reference:Assets/Plugin/DOTween/DOTween43.dll
+/reference:Assets/Plugin/DOTween/DOTween46.dll
+/reference:Assets/Plugin/DOTween/DOTween50.dll
+/reference:Assets/Plugins/CString.dll
+/reference:Assets/Plugins/Debugger.dll
+/reference:X:/@Air_XLuaDemo/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll
+/reference:X:/@Air_XLuaDemo/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll
+/reference:X:/@Air_XLuaDemo/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/Microsoft.Win32.Primitives.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.AppContext.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Collections.Concurrent.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Collections.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Collections.NonGeneric.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Collections.Specialized.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ComponentModel.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ComponentModel.EventBasedAsync.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ComponentModel.Primitives.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ComponentModel.TypeConverter.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Console.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Data.Common.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Contracts.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Debug.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.FileVersionInfo.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Process.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.StackTrace.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.TextWriterTraceListener.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Tools.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.TraceSource.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Tracing.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Drawing.Primitives.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Dynamic.Runtime.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Globalization.Calendars.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Globalization.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Globalization.Extensions.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.Compression.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.Compression.ZipFile.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.FileSystem.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.FileSystem.DriveInfo.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.FileSystem.Primitives.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.FileSystem.Watcher.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.IsolatedStorage.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.MemoryMappedFiles.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.Pipes.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.UnmanagedMemoryStream.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Linq.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Linq.Expressions.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Linq.Parallel.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Linq.Queryable.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Http.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.NameResolution.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.NetworkInformation.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Ping.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Primitives.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Requests.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Security.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Sockets.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.WebHeaderCollection.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.WebSockets.Client.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.WebSockets.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ObjectModel.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Reflection.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Reflection.Extensions.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Reflection.Primitives.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Resources.Reader.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Resources.ResourceManager.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Resources.Writer.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.CompilerServices.VisualC.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Extensions.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Handles.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.InteropServices.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.InteropServices.RuntimeInformation.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Numerics.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Formatters.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Json.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Primitives.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Xml.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Claims.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.Algorithms.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.Csp.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.Encoding.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.Primitives.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.X509Certificates.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Principal.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.SecureString.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Text.Encoding.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Text.Encoding.Extensions.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Text.RegularExpressions.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Overlapped.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Tasks.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Tasks.Parallel.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Thread.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.ThreadPool.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Timer.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ValueTuple.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.ReaderWriter.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XDocument.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XmlDocument.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XmlSerializer.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XPath.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XPath.XDocument.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/Extensions/2.0.0/System.Numerics.Vectors.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/mscorlib.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.ComponentModel.Composition.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Core.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Data.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Drawing.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.IO.Compression.FileSystem.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Net.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Numerics.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Runtime.Serialization.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.ServiceModel.Web.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Transactions.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Web.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Windows.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Linq.dll
+/reference:X:/Unity3D/2019.4.24f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll
+/define:UNITY_2019_4_24
+/define:UNITY_2019_4
+/define:UNITY_2019
+/define:UNITY_5_3_OR_NEWER
+/define:UNITY_5_4_OR_NEWER
+/define:UNITY_5_5_OR_NEWER
+/define:UNITY_5_6_OR_NEWER
+/define:UNITY_2017_1_OR_NEWER
+/define:UNITY_2017_2_OR_NEWER
+/define:UNITY_2017_3_OR_NEWER
+/define:UNITY_2017_4_OR_NEWER
+/define:UNITY_2018_1_OR_NEWER
+/define:UNITY_2018_2_OR_NEWER
+/define:UNITY_2018_3_OR_NEWER
+/define:UNITY_2018_4_OR_NEWER
+/define:UNITY_2019_1_OR_NEWER
+/define:UNITY_2019_2_OR_NEWER
+/define:UNITY_2019_3_OR_NEWER
+/define:UNITY_2019_4_OR_NEWER
+/define:PLATFORM_ARCH_64
+/define:UNITY_64
+/define:UNITY_INCLUDE_TESTS
+/define:UNITY_ANALYTICS
+/define:ENABLE_AR
+/define:ENABLE_AUDIO
+/define:ENABLE_CACHING
+/define:ENABLE_CLOTH
+/define:ENABLE_EVENT_QUEUE
+/define:ENABLE_MICROPHONE
+/define:ENABLE_MULTIPLE_DISPLAYS
+/define:ENABLE_PHYSICS
+/define:ENABLE_TEXTURE_STREAMING
+/define:ENABLE_UNET
+/define:ENABLE_LZMA
+/define:ENABLE_UNITYEVENTS
+/define:ENABLE_VR
+/define:ENABLE_WEBCAM
+/define:ENABLE_UNITYWEBREQUEST
+/define:ENABLE_WWW
+/define:ENABLE_CLOUD_SERVICES
+/define:ENABLE_CLOUD_SERVICES_COLLAB
+/define:ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS
+/define:ENABLE_CLOUD_SERVICES_ADS
+/define:ENABLE_CLOUD_SERVICES_USE_WEBREQUEST
+/define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+/define:ENABLE_CLOUD_SERVICES_PURCHASING
+/define:ENABLE_CLOUD_SERVICES_ANALYTICS
+/define:ENABLE_CLOUD_SERVICES_UNET
+/define:ENABLE_CLOUD_SERVICES_BUILD
+/define:ENABLE_CLOUD_LICENSE
+/define:ENABLE_EDITOR_HUB_LICENSE
+/define:ENABLE_WEBSOCKET_CLIENT
+/define:ENABLE_DIRECTOR_AUDIO
+/define:ENABLE_DIRECTOR_TEXTURE
+/define:ENABLE_MANAGED_JOBS
+/define:ENABLE_MANAGED_TRANSFORM_JOBS
+/define:ENABLE_MANAGED_ANIMATION_JOBS
+/define:ENABLE_MANAGED_AUDIO_JOBS
+/define:INCLUDE_DYNAMIC_GI
+/define:ENABLE_MONO_BDWGC
+/define:ENABLE_SCRIPTING_GC_WBARRIERS
+/define:PLATFORM_SUPPORTS_MONO
+/define:RENDER_SOFTWARE_CURSOR
+/define:ENABLE_VIDEO
+/define:PLATFORM_STANDALONE
+/define:PLATFORM_STANDALONE_WIN
+/define:UNITY_STANDALONE_WIN
+/define:UNITY_STANDALONE
+/define:ENABLE_RUNTIME_GI
+/define:ENABLE_MOVIES
+/define:ENABLE_NETWORK
+/define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+/define:ENABLE_OUT_OF_PROCESS_CRASH_HANDLER
+/define:ENABLE_CLUSTER_SYNC
+/define:ENABLE_CLUSTERINPUT
+/define:GFXDEVICE_WAITFOREVENT_MESSAGEPUMP
+/define:ENABLE_WEBSOCKET_HOST
+/define:ENABLE_MONO
+/define:NET_STANDARD_2_0
+/define:ENABLE_PROFILER
+/define:DEBUG
+/define:TRACE
+/define:UNITY_ASSERTIONS
+/define:UNITY_EDITOR
+/define:UNITY_EDITOR_64
+/define:UNITY_EDITOR_WIN
+/define:ENABLE_UNITY_COLLECTIONS_CHECKS
+/define:ENABLE_BURST_AOT
+/define:UNITY_TEAM_LICENSE
+/define:ENABLE_VSTU
+/define:ENABLE_CUSTOM_RENDER_TEXTURE
+/define:ENABLE_DIRECTOR
+/define:ENABLE_LOCALIZATION
+/define:ENABLE_SPRITES
+/define:ENABLE_TERRAIN
+/define:ENABLE_TILEMAP
+/define:ENABLE_TIMELINE
+/define:ENABLE_LEGACY_INPUT_MANAGER
+/define:CSHARP_7_OR_LATER
+/define:CSHARP_7_3_OR_NEWER
+Assets\Anew\Tools\AES.cs
+Assets\Anew\Tools\AppBoot.cs
+Assets\Anew\Tools\ExampleGenConfig.cs
+Assets\Anew\Tools\GameConfig.cs
+Assets\Anew\Tools\GameTcpClient.cs
+Assets\Anew\Tools\GetInputPosition.cs
+Assets\Anew\Tools\GuidancesPermeate.cs
+Assets\Anew\Tools\HTTPRequest.cs
+Assets\Anew\Tools\HTTPResponse.cs
+Assets\Anew\Tools\LuaTools.cs
+Assets\Anew\Tools\MonsterShader.cs
+Assets\Anew\Tools\ResourceManager.cs
+Assets\Anew\Tools\SceneChange.cs
+Assets\Anew\Tools\SocketHelper.cs
+Assets\Anew\Tools\SystemTool.cs
+Assets\Anew\Tools\TcpSocketClient.cs
+Assets\Anew\Tools\UnityEngineTool.cs
+Assets\Anew\Tools\Zlib\Source\Adler32.cs
+Assets\Anew\Tools\Zlib\Source\AssemblyInfo.cs
+Assets\Anew\Tools\Zlib\Source\Deflate.cs
+Assets\Anew\Tools\Zlib\Source\InfBlocks.cs
+Assets\Anew\Tools\Zlib\Source\InfCodes.cs
+Assets\Anew\Tools\Zlib\Source\InfTree.cs
+Assets\Anew\Tools\Zlib\Source\Inflate.cs
+Assets\Anew\Tools\Zlib\Source\StaticTree.cs
+Assets\Anew\Tools\Zlib\Source\SupportClass.cs
+Assets\Anew\Tools\Zlib\Source\Tree.cs
+Assets\Anew\Tools\Zlib\Source\ZInputStream.cs
+Assets\Anew\Tools\Zlib\Source\ZOutputStream.cs
+Assets\Anew\Tools\Zlib\Source\ZStream.cs
+Assets\Anew\Tools\Zlib\Source\ZStreamException.cs
+Assets\Anew\Tools\Zlib\Source\Zlib.cs
+Assets\Anew\Tools\ZlibMgr.cs
+Assets\Anew\Tools\hpFollow.cs
+Assets\Anew\Tools\moveAllButtonToCanvas.cs
+Assets\Anew\Tools\rotateObj.cs
+Assets\Anew\Tools\testfight.cs
+Assets\Ant\AntHorizontalScroll.cs
+Assets\Ant\AntImgProgressBar.cs
+Assets\Ant\AntScroll.cs
+Assets\Ant\AntTimer.cs
+Assets\Ant\AntVertialScroll.cs
+Assets\Ant\EmojiText.cs
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\P2T.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Delaunay\DelaunayTriangle.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Delaunay\Sweep\AdvancingFront.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Delaunay\Sweep\AdvancingFrontNode.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Delaunay\Sweep\DTSweep.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Delaunay\Sweep\DTSweepBasin.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Delaunay\Sweep\DTSweepConstraint.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Delaunay\Sweep\DTSweepContext.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Delaunay\Sweep\DTSweepDebugContext.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Delaunay\Sweep\DTSweepEdgeEvent.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Delaunay\Sweep\DTSweepPointComparator.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Delaunay\Sweep\PointOnEdgeException.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\ITriangulatable.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Orientation.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Polygon\Contour.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Polygon\Polygon.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Polygon\PolygonPoint.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Polygon\PolygonSet.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Polygon\PolygonUtil.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Sets\ConstrainedPointSet.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Sets\PointSet.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\TriangulationAlgorithm.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\TriangulationConstraint.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\TriangulationContext.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\TriangulationDebugContext.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\TriangulationMode.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\TriangulationPoint.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Util\PointGenerator.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Util\PolygonGenerator.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Triangulation\Util\TriangulationUtil.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Utility\FixedArray3.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Utility\FixedBitArray3.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Utility\MathUtil.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Utility\Point2D.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Utility\Point2DList.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\CDT\Utility\Rect2D.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Sample Scene Data\Scripts\LogicArcsAndColumns.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Sample Scene Data\Scripts\LogicCollidingSphere.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Sample Scene Data\Scripts\LogicCompoundObject.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Sample Scene Data\Scripts\LogicExplodingFloor.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Sample Scene Data\Scripts\LogicExplodingGoblin.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Sample Scene Data\Scripts\LogicGlobalFracturing.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Sample Scene Data\Scripts\UltimateFracturingFPS.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Scripts\ConcaveColliderInterface.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Scripts\ExplosionSource.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Scripts\Fracture.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Scripts\FracturedChunk.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Scripts\FracturedObject.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Scripts\FracturingUtilDieTimer.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Scripts\MeshData.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Scripts\SpaceTree.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Scripts\Split.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Scripts\SupportPlane.cs"
+"Assets\Plugin\Ultimate Game Tools\Fracturing\Scripts\Triangulate.cs"
+"Assets\Plugin\Ultimate Game Tools\MeshCombiner\Scripts\CombinedMesh.cs"
+Assets\Script\AdemoNew\DemoNew.cs
+Assets\Script\AdemoNew\PlayerController.cs
+Assets\Script\EventSystem\SysBroadCast.cs
+Assets\Script\LuaBehaviour.cs
+Assets\Script\System\Enum.cs
+Assets\Script\System\GameMain.cs
+Assets\Script\System\Loading.cs
+Assets\Script\System\Module.cs
+Assets\Script\System\MusicManage.cs
+Assets\Script\System\Public.cs
+Assets\Script\System\SData.cs
+Assets\Script\System\SoundMoudule.cs
+Assets\Script\System\Tool\LoadTools.cs
+Assets\Script\System\Tool\layoutMap.cs
+Assets\Script\XLuaCustomExport.cs
+Assets\XLua\Gen\DGTweeningCoreABSSequentiableWrap.cs
+Assets\XLua\Gen\DGTweeningCoreTweenerCore3UnityEngineVector3UnityEngineVector3DGTweeningPluginsOptionsVectorOptionsWrap.cs
+Assets\XLua\Gen\DGTweeningDOTweenWrap.cs
+Assets\XLua\Gen\DGTweeningDOVirtualWrap.cs
+Assets\XLua\Gen\DGTweeningEaseFactoryWrap.cs
+Assets\XLua\Gen\DGTweeningSequenceWrap.cs
+Assets\XLua\Gen\DGTweeningShortcutExtensions43Wrap.cs
+Assets\XLua\Gen\DGTweeningShortcutExtensions46Wrap.cs
+Assets\XLua\Gen\DGTweeningShortcutExtensions50Wrap.cs
+Assets\XLua\Gen\DGTweeningShortcutExtensionsWrap.cs
+Assets\XLua\Gen\DGTweeningTweenExtensionsWrap.cs
+Assets\XLua\Gen\DGTweeningTweenParamsWrap.cs
+Assets\XLua\Gen\DGTweeningTweenSettingsExtensionsWrap.cs
+Assets\XLua\Gen\DGTweeningTweenWrap.cs
+Assets\XLua\Gen\DGTweeningTweenerWrap.cs
+Assets\XLua\Gen\DelegatesGensBridge.cs
+Assets\XLua\Gen\EnumWrap.cs
+Assets\XLua\Gen\LuaBehaviourWrap.cs
+Assets\XLua\Gen\MusicManageWrap.cs
+Assets\XLua\Gen\PackUnpack.cs
+Assets\XLua\Gen\PublicWrap.cs
+Assets\XLua\Gen\SystemCollectionsGenericList1SystemInt32Wrap.cs
+Assets\XLua\Gen\SystemObjectWrap.cs
+Assets\XLua\Gen\UnityEngineAnimationClipWrap.cs
+Assets\XLua\Gen\UnityEngineAnimationCurveWrap.cs
+Assets\XLua\Gen\UnityEngineBehaviourWrap.cs
+Assets\XLua\Gen\UnityEngineBoundsWrap.cs
+Assets\XLua\Gen\UnityEngineColorWrap.cs
+Assets\XLua\Gen\UnityEngineComponentWrap.cs
+Assets\XLua\Gen\UnityEngineDebugWrap.cs
+Assets\XLua\Gen\UnityEngineGameObjectWrap.cs
+Assets\XLua\Gen\UnityEngineKeyframeWrap.cs
+Assets\XLua\Gen\UnityEngineLightWrap.cs
+Assets\XLua\Gen\UnityEngineMathfWrap.cs
+Assets\XLua\Gen\UnityEngineMonoBehaviourWrap.cs
+Assets\XLua\Gen\UnityEngineObjectWrap.cs
+Assets\XLua\Gen\UnityEngineParticleSystemWrap.cs
+Assets\XLua\Gen\UnityEngineQuaternionWrap.cs
+Assets\XLua\Gen\UnityEngineRay2DWrap.cs
+Assets\XLua\Gen\UnityEngineRayWrap.cs
+Assets\XLua\Gen\UnityEngineRendererWrap.cs
+Assets\XLua\Gen\UnityEngineResourcesWrap.cs
+Assets\XLua\Gen\UnityEngineSkinnedMeshRendererWrap.cs
+Assets\XLua\Gen\UnityEngineTextAssetWrap.cs
+Assets\XLua\Gen\UnityEngineTimeWrap.cs
+Assets\XLua\Gen\UnityEngineToolWrap.cs
+Assets\XLua\Gen\UnityEngineTransformWrap.cs
+Assets\XLua\Gen\UnityEngineVector2Wrap.cs
+Assets\XLua\Gen\UnityEngineVector3Wrap.cs
+Assets\XLua\Gen\UnityEngineVector4Wrap.cs
+Assets\XLua\Gen\WrapPusher.cs
+Assets\XLua\Gen\XLuaGenAutoRegister.cs
+Assets\XLua\Src\CodeEmit.cs
+Assets\XLua\Src\CopyByValue.cs
+Assets\XLua\Src\DelegateBridge.cs
+Assets\XLua\Src\GenAttributes.cs
+Assets\XLua\Src\GenericDelegateBridge.cs
+Assets\XLua\Src\InternalGlobals.cs
+Assets\XLua\Src\LuaBase.cs
+Assets\XLua\Src\LuaDLL.cs
+Assets\XLua\Src\LuaEnv.cs
+Assets\XLua\Src\LuaException.cs
+Assets\XLua\Src\LuaFunction.cs
+Assets\XLua\Src\LuaTable.cs
+Assets\XLua\Src\MethodWarpsCache.cs
+Assets\XLua\Src\ObjectCasters.cs
+Assets\XLua\Src\ObjectPool.cs
+Assets\XLua\Src\ObjectTranslator.cs
+Assets\XLua\Src\ObjectTranslatorPool.cs
+Assets\XLua\Src\RawObject.cs
+Assets\XLua\Src\SignatureLoader.cs
+Assets\XLua\Src\StaticLuaCallbacks.cs
+Assets\XLua\Src\TemplateEngine\TemplateEngine.cs
+Assets\XLua\Src\TypeExtensions.cs
+Assets\XLua\Src\Utils.cs
+/nowarn:0414
+/nowarn:0649
+/nowarn:0219
+/nowarn:1635
+/nowarn:1701
+/nowarn:0618
+/nowarn:0108
+/nowarn:0162

@@ -1,0 +1,60 @@
+
+require('StaticData/ConfigData/ConfigPropJson')
+
+local PropModelData = {} 
+
+local PropData = {}
+PropData.__index = PropData
+function PropData:GetKey()
+	return self.propID
+end
+PropModelData.PropData = CreateList(PropData) 
+
+
+local PackageMaterData = {}
+PackageMaterData.__index = PackageMaterData
+function PackageMaterData:GetKey()
+	return self.propID
+end  
+PropModelData.MaterData = CreateList(PackageMaterData) 
+
+local tempAll = {}
+
+function PropModelData:SetData(v)  
+	tempAll= v 
+    local temp1 = {}
+    local temp2 = {} 
+   for i,v1 in ipairs(v) do  
+	   local temp_ = ConfigPropJson.getVarByCustom("prop_id", v1.propID)  
+	if temp_.prop_type ~="4" then
+		v1.name =  temp_.prop_name
+		v1.details =  temp_.prop_info
+		v1.btname =  temp_.prop_btname 
+ 		table.insert(temp1,v1 ) 
+	elseif ConfigPropJson.getVarByCustom("prop_id",v1.propID).prop_type =="4" then
+		v1.name =  temp_.prop_name
+		v1.details =  temp_.prop_info
+		v1.btname =  temp_.prop_btname 
+		table.insert(temp2,v1 ) 
+	end 
+   end  
+   self.PropData = temp1
+   self.MaterData = temp2
+end
+
+function PropModelData:QueryPropNum(propId)  
+ 	for i,v in ipairs(tempAll) do 
+		if v.propID == propId then
+			return tonumber(v.propNum)
+		  end	  
+	end  
+	 return 0
+end
+
+function PropModelData:GetPropName(propId)   
+	 return ConfigPropJson.getVarByCustom("prop_id", propId).prop_name  
+end
+
+ return PropModelData
+
+ 
