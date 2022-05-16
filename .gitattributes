@@ -1,0 +1,2 @@
+*.cs linguist-language=C#
+*.lua.txt linguist-language=lua
